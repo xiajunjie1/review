@@ -30,9 +30,10 @@ public class CollectionTest {
 	System.out.println(coll);
 	
 	//集合的遍历
+	//iterator默认指向初始位置的前一个
 	Iterator<Integer> it=temp.iterator();
 	while(it.hasNext()){
-		int value=it.next();
+		int value=it.next();//得到当前指向的下一个元素
 		System.out.println(value);
 	}
 	coll.add(10);
@@ -40,7 +41,13 @@ public class CollectionTest {
 	//coll.toArray();转数组，默认为object数组
 	Integer[] a=coll.toArray(new Integer[3]);
 	System.out.println(Arrays.toString(a));
+	//JDK1.8后提供了forEach方法
+	coll.forEach(val -> System.out.print(val+"--"));
+	
 	}
+	
+	
+	
 	
 
 	
