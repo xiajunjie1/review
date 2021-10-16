@@ -1,7 +1,9 @@
 package review;
 
 import java.util.*;
-
+/*
+ * Collection是单列集合，它有List和Set两个子接口
+ * */
 public class CollectionTest {
 	
 	public static void main(String[] args){
