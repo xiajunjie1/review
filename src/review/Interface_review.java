@@ -43,6 +43,11 @@ package review;
  * 接口的多态
  * 	向上转型：实现类对象转型成接口类型。隐式转换
  * 	向下转型：接口转型为实现类---显示转换，在向下转型之前，也用instanceof进行一个判断
+ * 
+ * 
+ * java8中接口的新特性
+ * 	static方法：可以在接口中定义静态方法，这个静态方法不是抽象的，是有实现的。它只能由接口来进行调用
+ * 	default方法：修饰接口中的方法，default修饰的方法可以添加默认的实现部分。此时实现类在实现接口的时候，可以对这些方法进行重写，也可以不重写
  * 		
  * */
 public class Interface_review {
@@ -55,6 +60,12 @@ public class Interface_review {
 			imp2=(Impcls2)msi;
 		}
 		
+		
+		NewInt newInt=new Newcls();
+		NewInt newInt2=new Newcls2();
+		NewInt.Intfunc();
+		newInt.Intfunc2();
+		newInt2.Intfunc2();
 		
 		
 	}
@@ -71,6 +82,17 @@ interface myfirstInt{
 interface mysecondInt{
 	public  abstract void basefunc2();//可以与其他接口中的该方法同名，但是实现类只能实现一次
 	
+}
+
+//接口新特性
+interface NewInt{
+	public static void Intfunc(){
+		System.out.println("接口静态方法！");
+	}
+	
+	public default void Intfunc2(){
+		System.out.println("接口default方法！");
+	}
 }
 
 //定义接口实现类
@@ -99,6 +121,23 @@ class Impcls2 implements myfirstInt,mysecondInt{
 	public void basefunc2() {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	
+
+	
+}
+
+class Newcls implements NewInt{
+	
+}
+
+class Newcls2 implements NewInt{
+
+	@Override
+	public void Intfunc2() {
+		// TODO Auto-generated method stub
+		System.out.println("实现类实现default方法");
 	}
 	
 }
