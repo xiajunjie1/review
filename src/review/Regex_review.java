@@ -45,7 +45,8 @@ public class Regex_review {
 		//basicSyntax();
 		//example2();
 		//PatternUsage();
-		MathcerUsage();
+		//MathcerUsage();
+		System.out.println(sensitiveTest(new String[]{"fuck","shit","hell","dick","ass","bitch"},"i will fuck up,shit hole.you motherfucker bitch "));
 	}
 	
 	/**
@@ -174,5 +175,25 @@ public class Regex_review {
 		//获取分组值
 		System.out.println(matcher2.group(1));
 		
+	}
+	
+	
+	private static String sensitiveTest(String[] args,String str){
+		if(args==null){
+			System.out.println("参数异常");
+		}
+		StringBuilder sb=new StringBuilder(args[0]);
+		for(int i=1;i<args.length;i++){
+			sb.append("|");
+			sb.append(args[i]);
+			
+		}
+		
+		String regex=sb.toString();
+		Pattern pattern=Pattern.compile(regex);
+		Matcher matcher=pattern.matcher(str);
+		String result=matcher.replaceAll("**");
+		
+		return result;
 	}
 }
