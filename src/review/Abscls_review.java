@@ -1,12 +1,12 @@
 package review;
-/*³éÏóÀà
- *	³éÏóÀà²»ÄÜ±»ÊµÀý»¯£¬ËüÖ»ÊÇÌá¹©ËùÓÐ×ÓÀàµÄ¹«ÓÐ²¿·Ö 
+/*æŠ½è±¡ç±»
+ *	æŠ½è±¡ç±»ä¸èƒ½è¢«å®žä¾‹åŒ–ï¼Œå®ƒåªæ˜¯æä¾›æ‰€æœ‰å­ç±»çš„å…¬æœ‰éƒ¨åˆ† 
  *
- *Ó¦ÓÃ³¡¾°£º
- *	³éÏóÀà¿ÉÒÔÓÃÀ´×öÒ»Ð©¼òµ¥µÄ¹æÔòÖÆ¶¨£¬ÔÚ³éÏóÀàÖÐÖÆ¶¨Ò»Ð©¹æÔò£¬ÒªÇó×ÓÀà±ØÐëÊµÏÖ£¬Ô¼ÊøËùÓÐ×ÓÀàµÄÐÐÎª
+ *åº”ç”¨åœºæ™¯ï¼š
+ *	æŠ½è±¡ç±»å¯ä»¥ç”¨æ¥åšä¸€äº›ç®€å•çš„è§„åˆ™åˆ¶å®šï¼Œåœ¨æŠ½è±¡ç±»ä¸­åˆ¶å®šä¸€äº›è§„åˆ™ï¼Œè¦æ±‚å­ç±»å¿…é¡»å®žçŽ°ï¼Œçº¦æŸæ‰€æœ‰å­ç±»çš„è¡Œä¸º
  *
- *¾ÖÏÞÐÔ£º
- *	ÓÉÓÚjavaÖÐ£¬ÀàÊÇµ¥¼Ì³ÐµÄ£¬ËùÒÔµ±Ò»¸öÀàÊÜµ½¶àÖÖ¹æÔòµÄÔ¼ÊøÊ±£¬¾ÍÎÞ·¨Âú×ãÒªÇó¡£´ËÊ±¿ÉÒÔÊ¹ÓÃ½Ó¿Ú½øÐÐÕâÑù¸´ÔÓ¹æÔòµÄÖÆ¶¨
+ *å±€é™æ€§ï¼š
+ *	ç”±äºŽjavaä¸­ï¼Œç±»æ˜¯å•ç»§æ‰¿çš„ï¼Œæ‰€ä»¥å½“ä¸€ä¸ªç±»å—åˆ°å¤šç§è§„åˆ™çš„çº¦æŸæ—¶ï¼Œå°±æ— æ³•æ»¡è¶³è¦æ±‚ã€‚æ­¤æ—¶å¯ä»¥ä½¿ç”¨æŽ¥å£è¿›è¡Œè¿™æ ·å¤æ‚è§„åˆ™çš„åˆ¶å®š
  *
  * */
 
@@ -17,31 +17,31 @@ public class Abscls_review {
 	}
 }
 
-//¶¨Òå³éÏóÀà
-//abstract·ÅÔÚclassÇ°£¬µ«ÊÇ·ÅÔÚÈ¨ÏÞÐÞÊÎ·ûºóÈçpublic abstract class
+//å®šä¹‰æŠ½è±¡ç±»
+//abstractæ”¾åœ¨classå‰ï¼Œä½†æ˜¯æ”¾åœ¨æƒé™ä¿®é¥°ç¬¦åŽå¦‚public abstract class
 abstract class Basecls{
 	public String field1;
 	public int field2;
 	
 	public void func1(){}
-	//ËüÄÚ²¿ÄÜ¶¨ÒåµÄÄÚÈÝºÍÆÕÍ¨ÀàÏàÍ¬£¬Èç³ÉÔ±±äÁ¿£¬³ÉÔ±·½·¨µÈ
-	//ËüÄÚ²¿Ò²¿ÉÒÔ¶¨Òå¹¹Ôì·½·¨»òÕßÊµÀý·½·¨£¬µ«ÊÇËüÃÇ¶¼ÊÇ¸ø×ÓÀàÓÃµÄ
+	//å®ƒå†…éƒ¨èƒ½å®šä¹‰çš„å†…å®¹å’Œæ™®é€šç±»ç›¸åŒï¼Œå¦‚æˆå‘˜å˜é‡ï¼Œæˆå‘˜æ–¹æ³•ç­‰
+	//å®ƒå†…éƒ¨ä¹Ÿå¯ä»¥å®šä¹‰æž„é€ æ–¹æ³•æˆ–è€…å®žä¾‹æ–¹æ³•ï¼Œä½†æ˜¯å®ƒä»¬éƒ½æ˜¯ç»™å­ç±»ç”¨çš„
 	
-	//ÓÉÓÚ¸¸ÀàµÄ·½·¨¶ÔÊý»áÔÚ×ÓÀàÖÐÖØÐ´¸²¸Ç£¬ËùÒÔ¶¨ÒåÀàÏÔµÃÓÐÐ©¶àÓà
-	//ÒýÈë³éÏó·½·¨
-	//³éÏó·½·¨Ö»ÄÜ°üº¬ÔÚ³éÏóÀàÖÐ
+	//ç”±äºŽçˆ¶ç±»çš„æ–¹æ³•å¯¹æ•°ä¼šåœ¨å­ç±»ä¸­é‡å†™è¦†ç›–ï¼Œæ‰€ä»¥å®šä¹‰ç±»æ˜¾å¾—æœ‰äº›å¤šä½™
+	//å¼•å…¥æŠ½è±¡æ–¹æ³•
+	//æŠ½è±¡æ–¹æ³•åªèƒ½åŒ…å«åœ¨æŠ½è±¡ç±»ä¸­
 	public abstract void absfunc1();
 	
 }
 
-//×ÓÀà
+//å­ç±»
 class Soncls extends Basecls{
 
-	//¸¸ÀàÖÐ¶¨ÒåÁË³éÏó·½·¨µÄ»°£¬×ÓÀàÒª²»Ò²¶¨ÒåÎª³éÏóÀà£¬Òª²»¾Í±ØÐëÒªÊµÏÖ¸Ã³éÏó·½·¨
+	//çˆ¶ç±»ä¸­å®šä¹‰äº†æŠ½è±¡æ–¹æ³•çš„è¯ï¼Œå­ç±»è¦ä¸ä¹Ÿå®šä¹‰ä¸ºæŠ½è±¡ç±»ï¼Œè¦ä¸å°±å¿…é¡»è¦å®žçŽ°è¯¥æŠ½è±¡æ–¹æ³•
 	@Override
 	public void absfunc1() {
 		
-		System.out.println("×ÓÀàÖØÐ´");
+		System.out.println("å­ç±»é‡å†™");
 	}
 	
 }

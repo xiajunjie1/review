@@ -13,7 +13,7 @@ import javax.sql.DataSource;
 import com.alibaba.druid.pool.DruidDataSourceFactory;
 
 /*
- * Á¬½Ó³Ø-druid
+ * è¿æ¥æ± -druid
  * */
 public class Conn_pool_druid {
 
@@ -32,27 +32,27 @@ public class Conn_pool_druid {
 
 class DruidPool{
 	private static DataSource datasource;
-	//¼ÓÔØpropertiesµÄÎÄ¼şÅäÖÃ
+	//åŠ è½½propertiesçš„æ–‡ä»¶é…ç½®
 	static{
 		
-		//Í¨¹ı×Ö½Ú¶ÁÈ¡Á÷¶ÁÈ¡ÅäÖÃÎÄ¼ş
+		//é€šè¿‡å­—èŠ‚è¯»å–æµè¯»å–é…ç½®æ–‡ä»¶
 		InputStream inStream=jdbc.DruidPool.class.getClassLoader().getResourceAsStream("druid.properties");
-		//·µ»ØÖµÊÇÒ»¸öInputStream,ÓÃÀ´×÷Îª²ÎÊı£¬´«µİ¸øProperties¶ÔÏó
-		//Properties¶ÔÏóÊÇÒ»¸ö¼üÖµ¶ÔÊı×é--map¼¯ºÏ
+		//è¿”å›å€¼æ˜¯ä¸€ä¸ªInputStream,ç”¨æ¥ä½œä¸ºå‚æ•°ï¼Œä¼ é€’ç»™Propertieså¯¹è±¡
+		//Propertieså¯¹è±¡æ˜¯ä¸€ä¸ªé”®å€¼å¯¹æ•°ç»„--mapé›†åˆ
 		Properties prop=new Properties();
 		//System.out.println(inStream);
 		try {
 			
 			prop.load(inStream);
 			
-			//»ñÈ¡Á¬½Ó³Ø¶ÔÏó
+			//è·å–è¿æ¥æ± å¯¹è±¡
 			datasource=DruidDataSourceFactory.createDataSource(prop);
 			//System.out.println(datasource);
 		} catch (IOException e) {
-			System.out.println("IOÁ÷³ö´í");
+			System.out.println("IOæµå‡ºé”™");
 			e.printStackTrace();
 		} catch (Exception e) {
-			System.out.println("ÆäËû´í");
+			System.out.println("å…¶ä»–é”™");
 			e.printStackTrace();
 		}
 		

@@ -2,14 +2,14 @@ package review;
 
 import java.util.*;
 /*
- * CollectionÊÇµ¥ÁĞ¼¯ºÏ£¬ËüÓĞListºÍSetÁ½¸ö×Ó½Ó¿Ú
+ * Collectionæ˜¯å•åˆ—é›†åˆï¼Œå®ƒæœ‰Listå’ŒSetä¸¤ä¸ªå­æ¥å£
  * */
 public class CollectionTest {
 	
 	public static void main(String[] args){
 		Collection<Integer> coll=new ArrayList<Integer>();
 	Collection<Integer> temp=new ArrayList<Integer>();
-	//ĞÂÔö
+	//æ–°å¢
 	coll.add(1);
 	coll.add(2);
 	coll.add(3);
@@ -17,33 +17,33 @@ public class CollectionTest {
 	temp.add(4);
 	temp.add(5);
 	temp.add(6);
-	//Ò»´ÎĞÂÔöÒ»¸ö¼¯ºÏµÄÔªËØ
+	//ä¸€æ¬¡æ–°å¢ä¸€ä¸ªé›†åˆçš„å…ƒç´ 
 	coll.addAll(temp);
 	System.out.println(coll);
-	//É¾³ı
+	//åˆ é™¤
 	temp.remove(5);
 	System.out.println(temp);
-	//°üº¬
+	//åŒ…å«
 	System.out.println(coll.contains(2));
-	//ÊÇ·ñ°üº¬¸Ã¼¯ºÏ
+	//æ˜¯å¦åŒ…å«è¯¥é›†åˆ
 	System.out.println(coll.containsAll(temp));
-	//Ò»°ãÔÚ±éÀú¼¯ºÏµÄÊ±ºòÃ»°ì·¨¶Ô¼¯ºÏ½øĞĞÉ¾³ı²Ù×÷£¬¿ÉÒÔÓÃ¸Ã·½·¨£¬ÔÚÂú×ãÄ³Ìõ¼şµÄÇé¿öÏÂ£¬É¾³ıµôÂú×ãÌõ¼şµÄÔªËØ
+	//ä¸€èˆ¬åœ¨éå†é›†åˆçš„æ—¶å€™æ²¡åŠæ³•å¯¹é›†åˆè¿›è¡Œåˆ é™¤æ“ä½œï¼Œå¯ä»¥ç”¨è¯¥æ–¹æ³•ï¼Œåœ¨æ»¡è¶³æŸæ¡ä»¶çš„æƒ…å†µä¸‹ï¼Œåˆ é™¤æ‰æ»¡è¶³æ¡ä»¶çš„å…ƒç´ 
 	coll.removeIf(ele->ele>5);
 	System.out.println(coll);
 	
-	//¼¯ºÏµÄ±éÀú
-	//iteratorÄ¬ÈÏÖ¸Ïò³õÊ¼Î»ÖÃµÄÇ°Ò»¸ö
+	//é›†åˆçš„éå†
+	//iteratoré»˜è®¤æŒ‡å‘åˆå§‹ä½ç½®çš„å‰ä¸€ä¸ª
 	Iterator<Integer> it=temp.iterator();
 	while(it.hasNext()){
-		int value=it.next();//µÃµ½µ±Ç°Ö¸ÏòµÄÏÂÒ»¸öÔªËØ
+		int value=it.next();//å¾—åˆ°å½“å‰æŒ‡å‘çš„ä¸‹ä¸€ä¸ªå…ƒç´ 
 		System.out.println(value);
 	}
 	coll.add(10);
 	coll.add(11);
-	//coll.toArray();×ªÊı×é£¬Ä¬ÈÏÎªobjectÊı×é
+	//coll.toArray();è½¬æ•°ç»„ï¼Œé»˜è®¤ä¸ºobjectæ•°ç»„
 	Integer[] a=coll.toArray(new Integer[3]);
 	System.out.println(Arrays.toString(a));
-	//JDK1.8ºóÌá¹©ÁËforEach·½·¨
+	//JDK1.8åæä¾›äº†forEachæ–¹æ³•
 	coll.forEach(val -> System.out.print(val+"--"));
 	
 	}

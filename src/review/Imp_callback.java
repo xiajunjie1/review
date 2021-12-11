@@ -1,8 +1,8 @@
 package review;
 
 /*
- * ÓÃ½Ó¿ÚÊµÏÖ»Øµ÷
- * µ±ÓĞĞ©Ê±ºò£¬Ò»¸öÀàÔÚµ÷ÓÃÁíÒ»¸öÀàÖ´ĞĞÄ³Ğ©½Ï³¤Ê±¼äµÄ²Ù×÷µÄÊ±ºò£¬ÁíÒ»¸öÀàÖ´ĞĞÍêÁËÒªµ÷ÓÃ±¾ÀàµÄ·½·¨À´Í¨Öª±¾ÀàÒÑ¾­Íê³É²Ù×÷
+ * ç”¨æ¥å£å®ç°å›è°ƒ
+ * å½“æœ‰äº›æ—¶å€™ï¼Œä¸€ä¸ªç±»åœ¨è°ƒç”¨å¦ä¸€ä¸ªç±»æ‰§è¡ŒæŸäº›è¾ƒé•¿æ—¶é—´çš„æ“ä½œçš„æ—¶å€™ï¼Œå¦ä¸€ä¸ªç±»æ‰§è¡Œå®Œäº†è¦è°ƒç”¨æœ¬ç±»çš„æ–¹æ³•æ¥é€šçŸ¥æœ¬ç±»å·²ç»å®Œæˆæ“ä½œ
  * 
  * 
  * */
@@ -20,14 +20,14 @@ class Human_Counter implements Counter_rule{
 	public Human_Counter(String name){
 		this.name=name;
 	}
-	//¼ÆËã£¬¸ÃÀàµ÷ÓÃ¹¤¾ßÀàÍê³É¼ÆËã
+	//è®¡ç®—ï¼Œè¯¥ç±»è°ƒç”¨å·¥å…·ç±»å®Œæˆè®¡ç®—
 	public void count(int end){
 		Computer_Counter cc=new Computer_Counter();
-		cc.count(end, this);//´«Èëthis£¬±ãÓÚ¼ÆËãÍê³Éºó»Øµ÷½Ó¿ÚÖØĞ´·½·¨¡£
+		cc.count(end, this);//ä¼ å…¥thisï¼Œä¾¿äºè®¡ç®—å®Œæˆåå›è°ƒæ¥å£é‡å†™æ–¹æ³•ã€‚
 	}
 	@Override
 	public void Countcomplete(int result) {
-		System.out.println(this.name+"µÄ¼ÆËã½á¹ûÊÇ£º"+result);
+		System.out.println(this.name+"çš„è®¡ç®—ç»“æœæ˜¯ï¼š"+result);
 		
 	}
 
@@ -35,8 +35,8 @@ class Human_Counter implements Counter_rule{
 }
 
 
-//¹¤¾ßÀà
-//Òªµ÷ÓÃ¸ÃÀàµÄ·½·¨£¬ĞèÒªÂú×ãÌõ¼ş£¬¸ÃÌõ¼ş¿ÉÒÔ¶¨Òå½Ó¿Ú
+//å·¥å…·ç±»
+//è¦è°ƒç”¨è¯¥ç±»çš„æ–¹æ³•ï¼Œéœ€è¦æ»¡è¶³æ¡ä»¶ï¼Œè¯¥æ¡ä»¶å¯ä»¥å®šä¹‰æ¥å£
 class Computer_Counter{
 	public void count(int end,Counter_rule cr){
 		int result;
@@ -45,13 +45,13 @@ class Computer_Counter{
 		}
 		if(end==1)result=1;
 		result=(1+end)*end/2;
-		//»Øµ÷
+		//å›è°ƒ
 		cr.Countcomplete(result);
 	}
 }
 
 
 interface Counter_rule{
-	//Íê³É¼ÆËãºó£¬Í¨ÖªÒÑ¾­Íê³É¼ÆËã
+	//å®Œæˆè®¡ç®—åï¼Œé€šçŸ¥å·²ç»å®Œæˆè®¡ç®—
 	public abstract void Countcomplete(int result);
 }

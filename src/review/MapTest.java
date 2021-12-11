@@ -1,21 +1,21 @@
 package review;
 import java.util.*;
 /*
- * Map<K,V>½Ó¿Ú£ºË«ÁĞ¼¯ºÏ
- * MapÊµÏÖÀà£ºHashMap,TreeMap,LinkedHashMap
- * TreeMapÖ§³Ö¼üÖµ¶ÔµÄÅÅĞò£¬ËüÊÇ¸ù¾İ¼üÀ´½øĞĞÅÅĞòµÄ
- * LinkedHashMapµ×²ãÎ¬»¤ÁËÒ»¸öÁ´±í£¬¹Ê£¬Ëü¿ÉÒÔ±£Ö¤ÔªËØµÄË³ĞòºÍ²åÈëµÄË³ĞòÏàÍ¬
+ * Map<K,V>æ¥å£ï¼šåŒåˆ—é›†åˆ
+ * Mapå®ç°ç±»ï¼šHashMap,TreeMap,LinkedHashMap
+ * TreeMapæ”¯æŒé”®å€¼å¯¹çš„æ’åºï¼Œå®ƒæ˜¯æ ¹æ®é”®æ¥è¿›è¡Œæ’åºçš„
+ * LinkedHashMapåº•å±‚ç»´æŠ¤äº†ä¸€ä¸ªé“¾è¡¨ï¼Œæ•…ï¼Œå®ƒå¯ä»¥ä¿è¯å…ƒç´ çš„é¡ºåºå’Œæ’å…¥çš„é¡ºåºç›¸åŒ
  * Hashtable
- * 	HashMapÊÇÏß³Ì²»°²È«µÄ£¬HashtableÊÇÏß³Ì°²È«µÄ¡£
- * 	HashMapÔÊĞí³öÏÖnullµÄ¼üÖµ£¬HashtableÊÇ²»ÔÊĞíµÄ
- * 	HashMapµÄ¸¸ÀàÊÇAbstractMap£¬HashtableµÄ¸¸ÀàÊÇDictionary
- * 	HashMapµ×²ãËã·¨Ğ§ÂÊÓÅÓÚHashtable
+ * 	HashMapæ˜¯çº¿ç¨‹ä¸å®‰å…¨çš„ï¼ŒHashtableæ˜¯çº¿ç¨‹å®‰å…¨çš„ã€‚
+ * 	HashMapå…è®¸å‡ºç°nullçš„é”®å€¼ï¼ŒHashtableæ˜¯ä¸å…è®¸çš„
+ * 	HashMapçš„çˆ¶ç±»æ˜¯AbstractMapï¼ŒHashtableçš„çˆ¶ç±»æ˜¯Dictionary
+ * 	HashMapåº•å±‚ç®—æ³•æ•ˆç‡ä¼˜äºHashtable
  * 
  * 
- * collections¹¤¾ßÀàÖĞ£¬ÓĞ·½·¨¿ÉÒÔµÃµ½¶ÔÓ¦Ïß³Ì°²È«µÄ¼¯ºÏ£¬ÏêÇé¿É¼ûapi
- * Collections.synchronizedMap(m),´«Èëmap·µ»ØÏß³Ì°²È«µÄmap
- * Collections.synchronizedList(list),´«Èëlist·µ»ØÏß³Ì°²È«µÄlist
- * Collections.synchronizedSet(s),´«Èëset·µ»ØÏß³Ì°²È«µÄset
+ * collectionså·¥å…·ç±»ä¸­ï¼Œæœ‰æ–¹æ³•å¯ä»¥å¾—åˆ°å¯¹åº”çº¿ç¨‹å®‰å…¨çš„é›†åˆï¼Œè¯¦æƒ…å¯è§api
+ * Collections.synchronizedMap(m),ä¼ å…¥mapè¿”å›çº¿ç¨‹å®‰å…¨çš„map
+ * Collections.synchronizedList(list),ä¼ å…¥listè¿”å›çº¿ç¨‹å®‰å…¨çš„list
+ * Collections.synchronizedSet(s),ä¼ å…¥setè¿”å›çº¿ç¨‹å®‰å…¨çš„set
  * 
  * 
  * 
@@ -25,74 +25,74 @@ public class MapTest {
 	public static void main(String[] args){
 		Map<String,String> hashmap=new HashMap<>();
 		String value;
-		value=hashmap.put("name", "ÕÅÈı");//¸Ã·½·¨ÓĞ·µ»ØÖµ£¬ËüµÄ·µ»ØÖµÊÇ£¬±»¸²¸ÇµôµÄÉÏÒ»¸önameµÄÖµ£¬ÒòÎª¼¯ºÏ±¾À´ÊÇ¿Õ£¬Ã»ÓĞname£¬ËùÒÔ·µ»Ønull
+		value=hashmap.put("name", "å¼ ä¸‰");//è¯¥æ–¹æ³•æœ‰è¿”å›å€¼ï¼Œå®ƒçš„è¿”å›å€¼æ˜¯ï¼Œè¢«è¦†ç›–æ‰çš„ä¸Šä¸€ä¸ªnameçš„å€¼ï¼Œå› ä¸ºé›†åˆæœ¬æ¥æ˜¯ç©ºï¼Œæ²¡æœ‰nameï¼Œæ‰€ä»¥è¿”å›null
 		System.out.println(value);
-		value=hashmap.put("name", "ÀîËÄ");//ÀîËÄ»á¸²¸ÇÕÅÈı£¬¸Ã´ÎÖ´ĞĞµÄ½á¹ûµÄ·µ»ØÖµÊÇÕÅÈı
+		value=hashmap.put("name", "æå››");//æå››ä¼šè¦†ç›–å¼ ä¸‰ï¼Œè¯¥æ¬¡æ‰§è¡Œçš„ç»“æœçš„è¿”å›å€¼æ˜¯å¼ ä¸‰
 		System.out.println(value);
-		//ÓÉÉÏÃæµÄÖ´ĞĞ½á¹û¿ÉÒÔ¿´³öÀ´£¬¼üÊÇÎ¨Ò»µÄ¡£
+		//ç”±ä¸Šé¢çš„æ‰§è¡Œç»“æœå¯ä»¥çœ‹å‡ºæ¥ï¼Œé”®æ˜¯å”¯ä¸€çš„ã€‚
 		
-		value=hashmap.putIfAbsent("name", "ÍõÎå");//¸Ã·½·¨±íÊ¾£¬Èç¹û¼¯ºÏÖĞÒÑ¾­´æÔÚÏàÍ¬µÄ¼ü£¬¸Ã¼üÊÇ²»»á±»Ìí¼Ó³öÈ¥µÄ
+		value=hashmap.putIfAbsent("name", "ç‹äº”");//è¯¥æ–¹æ³•è¡¨ç¤ºï¼Œå¦‚æœé›†åˆä¸­å·²ç»å­˜åœ¨ç›¸åŒçš„é”®ï¼Œè¯¥é”®æ˜¯ä¸ä¼šè¢«æ·»åŠ å‡ºå»çš„
 		System.out.println(value);
 		System.out.println(hashmap);
 		
 		hashmap.put("address","china");
-		//É¾³ı¼ü
+		//åˆ é™¤é”®
 		System.out.println("before del"+hashmap);
-		System.out.println("del"+hashmap.remove("address"));//¸Ã·½·¨²ÎÊıÎª¼üÃû,·µ»ØÖµÎª±»É¾³ıµÄ¼üÖµ
+		System.out.println("del"+hashmap.remove("address"));//è¯¥æ–¹æ³•å‚æ•°ä¸ºé”®å,è¿”å›å€¼ä¸ºè¢«åˆ é™¤çš„é”®å€¼
 		System.out.println("after del"+hashmap);
 		
-		//ĞŞ¸Ä¼üÖµ¶ÔµÄÖµ
-		hashmap.replace("address", "beijing");//·µ»Ø±»Ìæ»»µÄ¼üÖµ¶ÔµÄÖµ
-		hashmap.replace("address","beijing","shanghai");//·µ»Ø²¼¶ûÖµ£¬ÊÇ·ñÌæ»»³É¹¦
+		//ä¿®æ”¹é”®å€¼å¯¹çš„å€¼
+		hashmap.replace("address", "beijing");//è¿”å›è¢«æ›¿æ¢çš„é”®å€¼å¯¹çš„å€¼
+		hashmap.replace("address","beijing","shanghai");//è¿”å›å¸ƒå°”å€¼ï¼Œæ˜¯å¦æ›¿æ¢æˆåŠŸ
 		hashmap.replaceAll((k,v)->{
-			//map¼¯ºÏÖĞ£¬ËùÒÔµÄ¼üÖµ¶Ô£¬»áÒ»´Î´«Èë¼üºÍ´«ÈëÖµ
-			//k´ú±í¼ü£¬v´ú±í¼üÖµ
-			//ÏÂÁĞÀı×ÓÊµÏÖµÄÊÇ£¬Èç¹û¼üÎªname£¬ÔòÖµÌæ»»Îªxiajunjie£¬ÆäËûµÄÎ¬³Ö²»±ä
+			//mapé›†åˆä¸­ï¼Œæ‰€ä»¥çš„é”®å€¼å¯¹ï¼Œä¼šä¸€æ¬¡ä¼ å…¥é”®å’Œä¼ å…¥å€¼
+			//kä»£è¡¨é”®ï¼Œvä»£è¡¨é”®å€¼
+			//ä¸‹åˆ—ä¾‹å­å®ç°çš„æ˜¯ï¼Œå¦‚æœé”®ä¸ºnameï¼Œåˆ™å€¼æ›¿æ¢ä¸ºxiajunjieï¼Œå…¶ä»–çš„ç»´æŒä¸å˜
 			if(k.equals("name")){
 				return "xiajunjie";
 			}
 			return v;
 		});
 		
-		//map»ñÈ¡Öµ
-		String name=hashmap.get("name");//´«Èë¼ü£¬»ñµÃÖµ
+		//mapè·å–å€¼
+		String name=hashmap.get("name");//ä¼ å…¥é”®ï¼Œè·å¾—å€¼
 		System.out.println(name);
-		//»ñµÃ¼üÖµ£¬Èç¹û´«ÈëµÄ¼ü²»´æÔÚ£¬Ôò·µ»Ø´«ÈëµÄÄ¬ÈÏÖµ
+		//è·å¾—é”®å€¼ï¼Œå¦‚æœä¼ å…¥çš„é”®ä¸å­˜åœ¨ï¼Œåˆ™è¿”å›ä¼ å…¥çš„é»˜è®¤å€¼
 		String exvalue=hashmap.getOrDefault("newkey", "defaultvalue");
 		System.out.println(exvalue);
 		
-		//ÅĞ¶Ï¼¯ºÏÊÇ·ñ°üº¬¼ü,·µ»ØÖµÎª²¼¶û
+		//åˆ¤æ–­é›†åˆæ˜¯å¦åŒ…å«é”®,è¿”å›å€¼ä¸ºå¸ƒå°”
 		System.out.println(hashmap.containsKey("name"));
-		//ÅĞ¶Ï¼¯ºÏÊÇ·ñ°üº¬Öµ£¬·µ»ØÖµÎª²¼¶û
+		//åˆ¤æ–­é›†åˆæ˜¯å¦åŒ…å«å€¼ï¼Œè¿”å›å€¼ä¸ºå¸ƒå°”
 		System.out.println(hashmap.containsValue("xiajunjie"));
 		
 		hashmap.clear();
-		//mapµÄ±éÀú
+		//mapçš„éå†
 		hashmap.put("key1", "value1");
 		hashmap.put("key2", "value2");
 		hashmap.put("key3", "value3");
 		hashmap.put("key4", "value4");
 		hashmap.put("key5", "value5");
-		//1.Í¨¹ıkeySetÀ´±éÀú
+		//1.é€šè¿‡keySetæ¥éå†
 		Set<String> keys=hashmap.keySet();
-		System.out.println("keySet±éÀú£º");
+		System.out.println("keySetéå†ï¼š");
 		keys.forEach(key -> {
 			
 			System.out.println(key+"="+hashmap.get(key));
 			
 		});
 		
-		//ÀûÓÃmap×Ô´øµÄforEach½øĞĞ±éÀú
-		System.out.println("foreach±éÀú£º");
+		//åˆ©ç”¨mapè‡ªå¸¦çš„forEachè¿›è¡Œéå†
+		System.out.println("foreachéå†ï¼š");
 		hashmap.forEach((k,v)->{
 			
 			System.out.println(k+"="+v);
 			
 		});
 		
-		//ÀûÓÃmapµÄEntrySet½øĞĞ±éÀú
+		//åˆ©ç”¨mapçš„EntrySetè¿›è¡Œéå†
 		Set<Map.Entry<String,String>> entryset=hashmap.entrySet();
-		System.out.println("EntrySet±éÀú:");
+		System.out.println("EntrySetéå†:");
 		entryset.forEach(ens->{
 			System.out.println(ens.getKey()+"="+ens.getValue());
 		});

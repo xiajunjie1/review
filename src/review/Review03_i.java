@@ -1,9 +1,9 @@
 package review;
 
 /*
- * �����ڽӿ��е�Ӧ��
+ * 泛型在接口中的应用
  * 
- * �������е�Ӧ�������ƣ��ӽӿڼ̳�Ҳ������̳���ͬ
+ * 与在类中的应用相类似，子接口继承也和子类继承相同
  * */
 public interface Review03_i<T> {
 

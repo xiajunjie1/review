@@ -8,15 +8,15 @@ import java.util.Date;
 import java.util.Random;
 
 /*
- * ³£ÓÃÀà
+ * å¸¸ç”¨ç±»
  * 	Math
  * 	Random
- * 	BigInteger¡¢BigDecimal£ºÓÃÀ´ÃèÊö·Ç³£·Ç³£´óµÄÊı×Ö
- * 	Date£¨ÔÚjava.utilÖĞ£©
- * 	SimpleDateFormat:¶ÔÈÕÆÚÊ±¼ä½øĞĞ¸ñÊ½»¯
- * 		½«date¶ÔÏó£¬×ª³ÉÖ¸¶¨¸ñÊ½µÄÊ±¼ä×Ö·û´®
- * 		½«Ò»¸öÖ¸¶¨¸ñÊ½µÄÊ±¼ä×Ö·û´®£¬×ª³ÉDate¶ÔÏó
- * 	Calendar:ÃèÊöÊ±¼ä¡¢ÈÕÆÚµÄÀà£¬¿ÉÓÃËüÀ´È¡´úDateÖĞ±»·ÏÆúµÄ·½·¨
+ * 	BigIntegerã€BigDecimalï¼šç”¨æ¥æè¿°éå¸¸éå¸¸å¤§çš„æ•°å­—
+ * 	Dateï¼ˆåœ¨java.utilä¸­ï¼‰
+ * 	SimpleDateFormat:å¯¹æ—¥æœŸæ—¶é—´è¿›è¡Œæ ¼å¼åŒ–
+ * 		å°†dateå¯¹è±¡ï¼Œè½¬æˆæŒ‡å®šæ ¼å¼çš„æ—¶é—´å­—ç¬¦ä¸²
+ * 		å°†ä¸€ä¸ªæŒ‡å®šæ ¼å¼çš„æ—¶é—´å­—ç¬¦ä¸²ï¼Œè½¬æˆDateå¯¹è±¡
+ * 	Calendar:æè¿°æ—¶é—´ã€æ—¥æœŸçš„ç±»ï¼Œå¯ç”¨å®ƒæ¥å–ä»£Dateä¸­è¢«åºŸå¼ƒçš„æ–¹æ³•
  * 
  * */
 public class CommCls_review {
@@ -24,7 +24,7 @@ public class CommCls_review {
 	public static void main(String[] args){
 		//MathTest();
 		//randomTest();
-		//randomSeed();//Ã¿´ÎÔËĞĞ³ÌĞò£¬Éú³ÉµÄ10¸öËæ»úÊıÊÇÏàÍ¬µÄ£¬ÒòÎªÖÖ×ÓÊÇÏàÍ¬µÄ£¬ÕâÊÇÒ»ÖÖ¼ÙËæ»ú
+		//randomSeed();//æ¯æ¬¡è¿è¡Œç¨‹åºï¼Œç”Ÿæˆçš„10ä¸ªéšæœºæ•°æ˜¯ç›¸åŒçš„ï¼Œå› ä¸ºç§å­æ˜¯ç›¸åŒçš„ï¼Œè¿™æ˜¯ä¸€ç§å‡éšæœº
 		//BignumberTest();
 		//DateTest();
 		//SimpleDateFormatTest();
@@ -32,97 +32,97 @@ public class CommCls_review {
 	}
 	
 	/**
-	 * MathÀàµÄÊ¹ÓÃ
-	 * Ïà¹ØÊıÑ§¼ÆËã²Ù×÷
+	 * Mathç±»çš„ä½¿ç”¨
+	 * ç›¸å…³æ•°å­¦è®¡ç®—æ“ä½œ
 	 * */
 	private static void MathTest(){
 		System.out.println(Math.PI);//3.14159265...
-		System.out.println(Math.E);//¶ÔÊı³£Á¿£¬2.7....
+		System.out.println(Math.E);//å¯¹æ•°å¸¸é‡ï¼Œ2.7....
 		
-		//³£ÓÃ·½·¨
-		int val=Math.abs(-20);//Çó¾ø¶ÔÖµ,ÓĞ¼¸¸öÖØÔØ·½·¨£¬²ÎÊı¿ÉÒÔÊÇint£¬float£¬long£¬double
+		//å¸¸ç”¨æ–¹æ³•
+		int val=Math.abs(-20);//æ±‚ç»å¯¹å€¼,æœ‰å‡ ä¸ªé‡è½½æ–¹æ³•ï¼Œå‚æ•°å¯ä»¥æ˜¯intï¼Œfloatï¼Œlongï¼Œdouble
 		System.out.println(val);
-		System.out.println(Math.max(9.8, 10));//·µ»Ø½Ï´óµÄÖµ£¬.min(a,b)ÊÇ·µ»Ø½ÏĞ¡µÄÖµ
-		System.out.println(Math.round(3.6415926));//ËÄÉáÎåÈë
-		System.out.println(Math.ceil(3.14));//ÏòÉÏÈ¡Õû
-		System.out.println(Math.floor(3.14));//ÏòÏÂÈ¡Õû
+		System.out.println(Math.max(9.8, 10));//è¿”å›è¾ƒå¤§çš„å€¼ï¼Œ.min(a,b)æ˜¯è¿”å›è¾ƒå°çš„å€¼
+		System.out.println(Math.round(3.6415926));//å››èˆäº”å…¥
+		System.out.println(Math.ceil(3.14));//å‘ä¸Šå–æ•´
+		System.out.println(Math.floor(3.14));//å‘ä¸‹å–æ•´
 		System.out.println(Math.pow(2, 3));//2^3
-		System.out.println(Math.sqrt(4));//¼ÆËãÒ»¸öÊı×ÖµÄÆ½·½¸ù
-		System.out.println(Math.random());//Éú³É0-1Ö®ÄÚµÄËæ»ú¸¡µãÊı×Ö
-		//Éú³É0-100·¶Î§ÄÚµÄÕûÊı£ºMath.random()*100
-		//Éú³É50-100·¶Î§ÄÚµÄÕûÊı£ºMath.random()*50+50
+		System.out.println(Math.sqrt(4));//è®¡ç®—ä¸€ä¸ªæ•°å­—çš„å¹³æ–¹æ ¹
+		System.out.println(Math.random());//ç”Ÿæˆ0-1ä¹‹å†…çš„éšæœºæµ®ç‚¹æ•°å­—
+		//ç”Ÿæˆ0-100èŒƒå›´å†…çš„æ•´æ•°ï¼šMath.random()*100
+		//ç”Ÿæˆ50-100èŒƒå›´å†…çš„æ•´æ•°ï¼šMath.random()*50+50
 		
 	}
 	
 	/**
-	 * RandomÀà
-	 * 	Ê¹ÓÃÖ®Ç°£¬ĞèÒªÏÈµ¼Èë¸ÃÀàµÄ°üjava.util.Random
-	 * 	Éú³ÉËæ»úÊı
+	 * Randomç±»
+	 * 	ä½¿ç”¨ä¹‹å‰ï¼Œéœ€è¦å…ˆå¯¼å…¥è¯¥ç±»çš„åŒ…java.util.Random
+	 * 	ç”Ÿæˆéšæœºæ•°
 	 * */
 	
 	private static void randomTest(){
 		Random r=new Random();
-		System.out.println(r.nextInt());//Éú³ÉÒ»¸ö[-2^31,2^32-1]·¶Î§ÄÚµÄÕûÊı
-		System.out.println(r.nextInt(100));//Éú³É[0,100)·¶Î§ÄÚÕûÊı
-		System.out.println(r.nextFloat());//Éú³É[0,1)·¶Î§ÄÚµÄ¸¡µãÊı
-		System.out.println(r.nextDouble());//Éú³É[0,1)·¶Î§ÄÚµÄdoubleÀàĞÍµÄËæ»úÊı
-		System.out.println(r.nextBoolean());//Éú³ÉÒ»¸öËæ»úµÄBooleanµÄÊı¾İ
+		System.out.println(r.nextInt());//ç”Ÿæˆä¸€ä¸ª[-2^31,2^32-1]èŒƒå›´å†…çš„æ•´æ•°
+		System.out.println(r.nextInt(100));//ç”Ÿæˆ[0,100)èŒƒå›´å†…æ•´æ•°
+		System.out.println(r.nextFloat());//ç”Ÿæˆ[0,1)èŒƒå›´å†…çš„æµ®ç‚¹æ•°
+		System.out.println(r.nextDouble());//ç”Ÿæˆ[0,1)èŒƒå›´å†…çš„doubleç±»å‹çš„éšæœºæ•°
+		System.out.println(r.nextBoolean());//ç”Ÿæˆä¸€ä¸ªéšæœºçš„Booleançš„æ•°æ®
 	} 
 	
 	/**
-	 * ´øÓĞËæ»úÊıÖÖ×ÓµÄÉú³ÉËæ»úÊı
-	 * Ëæ»úÊıÊÇÓĞÒ»¸ö¹Ì¶¨Ëã·¨Éú³ÉµÄ£¬Èç¹û´øÈëÒ»¸öÖÖ×Óµ½Õâ¸öËæ»úËã·¨µ±ÖĞ£¬ÄÜ¹»Éú³ÉÒ»¸öËæ»úÊıÁĞ¡£
-	 * ÓÉÓÚËæ»úËã·¨ÊÇÏàÍ¬µÄ£¬¹Ê»á²úÉúÒ»¸ö¡°bug¡±£¬¼´´øÈëÏàÍ¬µÄÖÖ×Ó£¬ÄÇÃ´Éú³ÉµÄËæ»úÊıÁĞÒ²ÊÇÏàÍ¬µÄ
+	 * å¸¦æœ‰éšæœºæ•°ç§å­çš„ç”Ÿæˆéšæœºæ•°
+	 * éšæœºæ•°æ˜¯æœ‰ä¸€ä¸ªå›ºå®šç®—æ³•ç”Ÿæˆçš„ï¼Œå¦‚æœå¸¦å…¥ä¸€ä¸ªç§å­åˆ°è¿™ä¸ªéšæœºç®—æ³•å½“ä¸­ï¼Œèƒ½å¤Ÿç”Ÿæˆä¸€ä¸ªéšæœºæ•°åˆ—ã€‚
+	 * ç”±äºéšæœºç®—æ³•æ˜¯ç›¸åŒçš„ï¼Œæ•…ä¼šäº§ç”Ÿä¸€ä¸ªâ€œbugâ€ï¼Œå³å¸¦å…¥ç›¸åŒçš„ç§å­ï¼Œé‚£ä¹ˆç”Ÿæˆçš„éšæœºæ•°åˆ—ä¹Ÿæ˜¯ç›¸åŒçš„
 	 * */
 	private static void randomSeed(){
-		//Í¨¹ıËæ»úÖÖ×Ó£¬ÊµÀı»¯Random¶ÔÏó
+		//é€šè¿‡éšæœºç§å­ï¼Œå®ä¾‹åŒ–Randomå¯¹è±¡
 		Random r = new Random(10);
 		for(int i=0;i<10;i++){
 			System.out.print(r.nextInt(100)+",");
 		}
 		
-		//¸Ã·½·¨µÄÎŞ²Î¹¹Ôì£¬»áÀûÓÃµ±Ç°ÏµÍ³Ê±¼äÉú³ÉÒ»¸öÖÖ×Ó£¬¼´Ã¿´ÎÔËĞĞ³ÌĞò£¬ÖÖ×Ó¶¼²»Í¬
+		//è¯¥æ–¹æ³•çš„æ— å‚æ„é€ ï¼Œä¼šåˆ©ç”¨å½“å‰ç³»ç»Ÿæ—¶é—´ç”Ÿæˆä¸€ä¸ªç§å­ï¼Œå³æ¯æ¬¡è¿è¡Œç¨‹åºï¼Œç§å­éƒ½ä¸åŒ
 	}
 	
 	/**
-	 * ´óÊı×Ö·½·¨²âÊÔ
+	 * å¤§æ•°å­—æ–¹æ³•æµ‹è¯•
 	 * */
 	private static void BignumberTest(){
 		BigInteger num1=new BigInteger("1234567891234567891234567891234");
 		BigInteger num2=new BigInteger("2345697034502304924123834345566");
 		
 		System.out.println(num1);
-		//ËÄÔòÔËËã
-		//¼Ó·¨
+		//å››åˆ™è¿ç®—
+		//åŠ æ³•
 		System.out.println(num1.add(num2));
-		//¼õ·¨
+		//å‡æ³•
 		System.out.println(num2.subtract(num1));
-		//³Ë·¨
+		//ä¹˜æ³•
 		System.out.println(num1.multiply(num2));
-		//³ı·¨
+		//é™¤æ³•
 		System.out.println(num2.divide(num1));
-		//±£ÁôÉÌºÍÓàÊı
+		//ä¿ç•™å•†å’Œä½™æ•°
 		BigInteger[] res=num2.divideAndRemainder(num1);
-		System.out.println("ÉÌ£º"+res[0]+",ÓàÊı£º"+res[1]);
+		System.out.println("å•†ï¼š"+res[0]+",ä½™æ•°ï¼š"+res[1]);
 		
 		
 	}
 	
 	
 	/**
-	 * ÈÕÆÚÀà²âÊÔ
+	 * æ—¥æœŸç±»æµ‹è¯•
 	 * */
 	private static void DateTest(){
 		Date d=new Date();
 		System.out.println(d);
-		//»ñÈ¡Ê±¼ä´Á---´Ó1970.1.1 0:0:0µ½ÏÖÔÚµÄÒ»¸öºÁÃëÊı
+		//è·å–æ—¶é—´æˆ³---ä»1970.1.1 0:0:0åˆ°ç°åœ¨çš„ä¸€ä¸ªæ¯«ç§’æ•°
 		long timestamp=d.getTime();
 		System.out.println(timestamp);
-		//ÉèÖÃÊ±¼ä´Á
+		//è®¾ç½®æ—¶é—´æˆ³
 		d.setTime(1625671858619l);
 		System.out.println(d);
 		
-		//Ê±¼ä±È½Ï
+		//æ—¶é—´æ¯”è¾ƒ
 		Date d2=new Date(1635671947065L);
 		System.out.println(d.before(d2));
 		System.out.println(d.after(d2));
@@ -130,20 +130,20 @@ public class CommCls_review {
 	}
 	
 	/**
-	 * SimpleDateFormatÀà²âÊÔ
+	 * SimpleDateFormatç±»æµ‹è¯•
 	 * */
 	private static void SimpleDateFormatTest(){
-		//Date×ª³ÉString
+		//Dateè½¬æˆString
 		Date d= new Date();
-		//Ö¸¶¨¸ñÊ½»¯µÄÊ±¼ä×Ö·û´®£¬×ª³ÉĞÎÈç2021Äê10ÔÂ31ÈÕ 17:33:33µÄĞÎÊ½
-		String format="yyyyÄêMMÔÂddÈÕ HH:mm:ss";
-		//Í¨¹ı¶¨ÒåºÃµÄ¸ñÊ½£¬³õÊ¼»¯SimpleDateFormat¶ÔÏó
+		//æŒ‡å®šæ ¼å¼åŒ–çš„æ—¶é—´å­—ç¬¦ä¸²ï¼Œè½¬æˆå½¢å¦‚2021å¹´10æœˆ31æ—¥ 17:33:33çš„å½¢å¼
+		String format="yyyyå¹´MMæœˆddæ—¥ HH:mm:ss";
+		//é€šè¿‡å®šä¹‰å¥½çš„æ ¼å¼ï¼Œåˆå§‹åŒ–SimpleDateFormatå¯¹è±¡
 		SimpleDateFormat sdf=new SimpleDateFormat(format);
-		//½«Date¸ñÊ½»¯²¢·µ»ØString
+		//å°†Dateæ ¼å¼åŒ–å¹¶è¿”å›String
 		String now=sdf.format(d);
 		System.out.println(now);
 		
-		//½«Ö¸¶¨¸ñÊ½µÄ×Ö·û´®×ª³ÉÒ»¸öDate¶ÔÏó
+		//å°†æŒ‡å®šæ ¼å¼çš„å­—ç¬¦ä¸²è½¬æˆä¸€ä¸ªDateå¯¹è±¡
 		String timestr="2021-10-31 17:44:44";
 		SimpleDateFormat sdf2=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		try {
@@ -156,36 +156,36 @@ public class CommCls_review {
 	}
 	
 	/**
-	 * Calendar²âÊÔ
+	 * Calendaræµ‹è¯•
 	 * */
 	private static void CalendarTest(){
-		//CalendarÊÇÒ»¸ö³éÏóÀà£¬¶ÔÏóµÄ»ñÈ¡ÊÇÍ¨¹ıµ÷ÓÃCalendarµÄ¾²Ì¬·½·¨
-		//¸Ã¾²Ì¬·½·¨ÊÇÊµÀı»¯ÁËÒ»¸öCalendarµÄÒ»¸ö×ÓÀà£¬È»ºóÏòÉÏ×ªĞÍ³ÉÁËCalendar
+		//Calendaræ˜¯ä¸€ä¸ªæŠ½è±¡ç±»ï¼Œå¯¹è±¡çš„è·å–æ˜¯é€šè¿‡è°ƒç”¨Calendarçš„é™æ€æ–¹æ³•
+		//è¯¥é™æ€æ–¹æ³•æ˜¯å®ä¾‹åŒ–äº†ä¸€ä¸ªCalendarçš„ä¸€ä¸ªå­ç±»ï¼Œç„¶åå‘ä¸Šè½¬å‹æˆäº†Calendar
 		Calendar cal=Calendar.getInstance();
-		//»ñÈ¡Ê±¼ä´Á
+		//è·å–æ—¶é—´æˆ³
 		long timestamp=cal.getTimeInMillis();
 		System.out.println(timestamp);
-		//»ñÈ¡Date¶ÔÏó
+		//è·å–Dateå¯¹è±¡
 		Date date=cal.getTime();
 		System.out.println(date);
 		
-		//»ñÈ¡Äê£¬Í¬Àí¿É»ñÈ¡ÔÂ£¬ÈÕ
+		//è·å–å¹´ï¼ŒåŒç†å¯è·å–æœˆï¼Œæ—¥
 		int year = cal.get(cal.YEAR);
 		System.out.println(year);
-		//»ñÈ¡½ñÌìÊÇ½ñÄêµÄµÚ¼¸Ìì£¬Í¬Àí¿É»ñÈ¡½ñÌìÊÇ±¾ÔÂµÄµÚ¼¸Ìì£¬±¾ÖÜµÄµÚ¼¸ÌìµÈ
+		//è·å–ä»Šå¤©æ˜¯ä»Šå¹´çš„ç¬¬å‡ å¤©ï¼ŒåŒç†å¯è·å–ä»Šå¤©æ˜¯æœ¬æœˆçš„ç¬¬å‡ å¤©ï¼Œæœ¬å‘¨çš„ç¬¬å‡ å¤©ç­‰
 		int day_of_year=cal.get(cal.DAY_OF_YEAR);
 		System.out.println(day_of_year);
 		
-		//ĞŞ¸ÄÖ¸¶¨ÊôĞÔÖµ
+		//ä¿®æ”¹æŒ‡å®šå±æ€§å€¼
 		cal.set(cal.YEAR, 2022);
 		System.out.println(cal.getTime());
 		
-		cal.set(2025, 10,1);//ÉèÖÃÄêÔÂÈÕ 2025-11-1,ÔÂ·İÊÇ´Ó0¿ªÊ¼ËãÆğµÄ
+		cal.set(2025, 10,1);//è®¾ç½®å¹´æœˆæ—¥ 2025-11-1,æœˆä»½æ˜¯ä»0å¼€å§‹ç®—èµ·çš„
 		System.out.println(cal.getTime());
 		
-		//calendarÒ²Ö§³ÖBefore after equals
+		//calendarä¹Ÿæ”¯æŒBefore after equals
 		
-		//¶ÔÈÕÆÚµÄÄ³Ğ©ÊôĞÔÖµ×ö¼Ó·¨
+		//å¯¹æ—¥æœŸçš„æŸäº›å±æ€§å€¼åšåŠ æ³•
 		cal.add(cal.YEAR, 3);
 		cal.add(cal.MONTH,-1);
 		cal.add(cal.DAY_OF_MONTH, 5);

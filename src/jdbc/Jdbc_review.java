@@ -7,25 +7,25 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 /*
- * JDBC³£ÓÃ×é¼ş
+ * JDBCå¸¸ç”¨ç»„ä»¶
  * 	DriverManager
- * 		×¢²áÇı¶¯£¬¿ÉÒÔÈÃJDBCÖªµÀÒªÊ¹ÓÃÄÄ¸öÇı¶¯
- * 		»ñÈ¡Connection£ºÈç¹ûÄÜ»ñÈ¡µ½connection£¬ÄÇÃ´ËµÃ÷ÒÑ¾­Á¬½ÓÉÏÁËÊı¾İ¿â
+ * 		æ³¨å†Œé©±åŠ¨ï¼Œå¯ä»¥è®©JDBCçŸ¥é“è¦ä½¿ç”¨å“ªä¸ªé©±åŠ¨
+ * 		è·å–Connectionï¼šå¦‚æœèƒ½è·å–åˆ°connectionï¼Œé‚£ä¹ˆè¯´æ˜å·²ç»è¿æ¥ä¸Šäº†æ•°æ®åº“
  * 	Connection
- * 		Á¬½Ó¶ÔÏó£¬ÓëÊı¾İ¿âµÄÍ¨Ñ¶¶¼ÊÇÍ¨¹ıÕâ¸ö¶ÔÏóÀ´Õ¹¿ªµÄ
- * 		Connection×îÎªÖØÒªµÄÒ»¸ö·½·¨¾ÍÊÇ»ñÈ¡Statement¶ÔÏó
+ * 		è¿æ¥å¯¹è±¡ï¼Œä¸æ•°æ®åº“çš„é€šè®¯éƒ½æ˜¯é€šè¿‡è¿™ä¸ªå¯¹è±¡æ¥å±•å¼€çš„
+ * 		Connectionæœ€ä¸ºé‡è¦çš„ä¸€ä¸ªæ–¹æ³•å°±æ˜¯è·å–Statementå¯¹è±¡
  * 	Statement
- * 		¸Ã¶ÔÏóÊÇÓÃÀ´ÏòÊı¾İ¿â·¢ËÍSQLÓï¾äµÄ£¬ÕâÑùÊı¾İ¿â¾Í»áÖ´ĞĞ·¢ËÍ¹ıÀ´µÄSQLÓï¾ä
- * 		void executeUpdate(String sql)Ö´ĞĞ¸üĞÂ²Ù×÷£¨update£¬insert£¬delete£©
- * 		ResultSet executeQuery(String sql)Ö´ĞĞ²éÑ¯²Ù×÷£¬»á·µ»ØÒ»¸ö½á¹û¼¯
+ * 		è¯¥å¯¹è±¡æ˜¯ç”¨æ¥å‘æ•°æ®åº“å‘é€SQLè¯­å¥çš„ï¼Œè¿™æ ·æ•°æ®åº“å°±ä¼šæ‰§è¡Œå‘é€è¿‡æ¥çš„SQLè¯­å¥
+ * 		void executeUpdate(String sql)æ‰§è¡Œæ›´æ–°æ“ä½œï¼ˆupdateï¼Œinsertï¼Œdeleteï¼‰
+ * 		ResultSet executeQuery(String sql)æ‰§è¡ŒæŸ¥è¯¢æ“ä½œï¼Œä¼šè¿”å›ä¸€ä¸ªç»“æœé›†
  * 	ResultSet
- * 		¸Ã¶ÔÏóÊÇÒ»¸ö²éÑ¯µÄ½á¹û¼¯£¬ËüÊÇÒ»¸ö¶şÎ¬±í¸ñ
- * 		boolean next()Ê¹ÄÚ²¿¹â±êÒÆµ½ÏÂÒ»ĞĞ
- * 		getXXX(int col),»ñÈ¡µ±Ç°ĞĞÖ¸¶¨ÁĞÉÏµÄÖµ£¬ÁĞÖµ´Ó1¿ªÊ¼
+ * 		è¯¥å¯¹è±¡æ˜¯ä¸€ä¸ªæŸ¥è¯¢çš„ç»“æœé›†ï¼Œå®ƒæ˜¯ä¸€ä¸ªäºŒç»´è¡¨æ ¼
+ * 		boolean next()ä½¿å†…éƒ¨å…‰æ ‡ç§»åˆ°ä¸‹ä¸€è¡Œ
+ * 		getXXX(int col),è·å–å½“å‰è¡ŒæŒ‡å®šåˆ—ä¸Šçš„å€¼ï¼Œåˆ—å€¼ä»1å¼€å§‹
  * 
  * 
- * 1¡¢MySQL 8.0 ÒÔÉÏ°æ±¾Çı¶¯°ü°æ±¾ mysql-connector-java-8.0.16.jar¡£
-   2¡¢com.mysql.jdbc.Driver ¸ü»»Îª com.mysql.cj.jdbc.Driver¡£
+ * 1ã€MySQL 8.0 ä»¥ä¸Šç‰ˆæœ¬é©±åŠ¨åŒ…ç‰ˆæœ¬ mysql-connector-java-8.0.16.jarã€‚
+   2ã€com.mysql.jdbc.Driver æ›´æ¢ä¸º com.mysql.cj.jdbc.Driverã€‚
  * */
 public class Jdbc_review {
 	
@@ -34,7 +34,7 @@ public static void main(String[] args){
 }
 
 /**
- * µÚÒ»¸öÁ¬½ÓMYSQLÊı¾İ¿âµÄ²âÊÔ
+ * ç¬¬ä¸€ä¸ªè¿æ¥MYSQLæ•°æ®åº“çš„æµ‹è¯•
  * */
 private static void conncetDB()
 {
@@ -43,24 +43,24 @@ private static void conncetDB()
 	ResultSet rs=null;
 	try {
 		Class.forName("com.mysql.cj.jdbc.Driver");
-		//8.0°æ±¾µÄJDBCĞèÒªÉèÖÃºóÃæµÄuseSSLºÍÊ±Çø£¬Èç¹ûÊÇ8.0ÒÔÏÂ°æ±¾£¬²»ÒªÉèÖÃÕâÁ½¸öÄÚÈİ
+		//8.0ç‰ˆæœ¬çš„JDBCéœ€è¦è®¾ç½®åé¢çš„useSSLå’Œæ—¶åŒºï¼Œå¦‚æœæ˜¯8.0ä»¥ä¸‹ç‰ˆæœ¬ï¼Œä¸è¦è®¾ç½®è¿™ä¸¤ä¸ªå†…å®¹
 		String url="jdbc:mysql://localhost:3306/mydb?characterEncoding=utf8&useSSL=false&serverTimezone=UTC";
 		String uname="root";
 		String pwd="123456";
 		 conn=DriverManager.getConnection(url,uname,pwd);
 		 stat=conn.createStatement();
 		String sql="update formtest set number=number+5 where name='xia'";
-		//executeUpdateµÄ·µ»ØÖµÊÇÒ»¸öint£¬¼´ÊÜÓ°ÏìµÄĞĞÊı
+		//executeUpdateçš„è¿”å›å€¼æ˜¯ä¸€ä¸ªintï¼Œå³å—å½±å“çš„è¡Œæ•°
 		System.out.println(stat.executeUpdate(sql));
 		
-		//²éÑ¯²Ù×÷£¬Í¨¹ıstatement¶ÔÏó»ñµÃResultSet½á¹û¼¯
+		//æŸ¥è¯¢æ“ä½œï¼Œé€šè¿‡statementå¯¹è±¡è·å¾—ResultSetç»“æœé›†
 		String sqlQuery="Select * from formtest";
 		rs=stat.executeQuery(sqlQuery);
-		//³õÊ¼×´Ì¬ÏÂ£¬ResultSetÖĞÓĞÒ»¸öÖ¸ÏòµÚÒ»Ìõ¼ÇÂ¼µÄÇ°Ãæ£¬µ÷ÓÃnext()Ëü¾Í»áÖ¸ÏòÏÂÒ»Ìõ¼ÇÂ¼
+		//åˆå§‹çŠ¶æ€ä¸‹ï¼ŒResultSetä¸­æœ‰ä¸€ä¸ªæŒ‡å‘ç¬¬ä¸€æ¡è®°å½•çš„å‰é¢ï¼Œè°ƒç”¨next()å®ƒå°±ä¼šæŒ‡å‘ä¸‹ä¸€æ¡è®°å½•
 		while(rs.next()){
 			String name=rs.getString(2);
 			int number=rs.getInt(3);
-			System.out.println("½á¹ûÎª£º"+name+","+number);
+			System.out.println("ç»“æœä¸ºï¼š"+name+","+number);
 			}
 	} catch (ClassNotFoundException e) 
 	{

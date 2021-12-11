@@ -4,7 +4,7 @@ import java.util.stream.*;
 import java.util.*;
 import java.util.function.Function;
 /*
- * Á÷Ê½±à³Ì£¬ÖĞ¼ä²Ù×÷
+ * æµå¼ç¼–ç¨‹ï¼Œä¸­é—´æ“ä½œ
  * 
  * */
 public class Stream_test2 {
@@ -21,7 +21,7 @@ public class Stream_test2 {
 	}
 	
 	/**
-	 * »ñÈ¡Á÷¶ÔÏóÊı¾İÔ´
+	 * è·å–æµå¯¹è±¡æ•°æ®æº
 	 * 
 	 * */
 	private static Stream<myStudent> getDataSourece(){
@@ -37,21 +37,21 @@ public class Stream_test2 {
 		return list.stream();
 	}
 	
-	/**ÖĞ¼ä²Ù×÷£¬filter---¹ıÂËÊı¾İ£¬·µ»ØÂú×ãÌõ¼şµÄÊı¾İÁ÷
+	/**ä¸­é—´æ“ä½œï¼Œfilter---è¿‡æ»¤æ•°æ®ï¼Œè¿”å›æ»¡è¶³æ¡ä»¶çš„æ•°æ®æµ
 	 * */
 	private static void filterUsage(){
-		//»ñÈ¡Êı¾İÔ´
+		//è·å–æ•°æ®æº
 		Stream<myStudent> stream=getDataSourece();
-		//¹ıÂË£¬Ö»·µ»ØÄêÁä´óÓÚ18ËêµÄÔªËØ
-		Stream<myStudent> targetStream=stream.filter(e1->e1.getAge()>18);//·µ»ØÒ»¸öÊı¾İ¹ıÂËºóµÄÁ÷¶ÔÏó
+		//è¿‡æ»¤ï¼Œåªè¿”å›å¹´é¾„å¤§äº18å²çš„å…ƒç´ 
+		Stream<myStudent> targetStream=stream.filter(e1->e1.getAge()>18);//è¿”å›ä¸€ä¸ªæ•°æ®è¿‡æ»¤åçš„æµå¯¹è±¡
 		targetStream.forEach(System.out::println);
 	}
 	
 	/**
-	 * ÖĞ¼ä²Ù×÷£¬distinct¡£
-	 * Õâ¸ö·½·¨Ã»ÓĞ²ÎÊı£¬È¥ÖØ¹æÔòºÍHashSetÒ»Ñù
-	 * 1.±È½ÏÁ½¸ö¶ÔÏóµÄhashcode
-	 * 2.±È½ÏÁ½¸ö¶ÔÏóµÄequals
+	 * ä¸­é—´æ“ä½œï¼Œdistinctã€‚
+	 * è¿™ä¸ªæ–¹æ³•æ²¡æœ‰å‚æ•°ï¼Œå»é‡è§„åˆ™å’ŒHashSetä¸€æ ·
+	 * 1.æ¯”è¾ƒä¸¤ä¸ªå¯¹è±¡çš„hashcode
+	 * 2.æ¯”è¾ƒä¸¤ä¸ªå¯¹è±¡çš„equals
 	 * 
 	 * */
 	
@@ -61,50 +61,50 @@ public class Stream_test2 {
 	}
 	
 	/**
-	 * ÖĞ¼ä²Ù×÷£¬sorted--ÅÅĞò
-	 * sorted():°´ÕÕÔªËØÊµÏÖµÄComparable½Ó¿ÚµÄ´óĞ¡¹æÔò½øĞĞÅÅĞò
-	 * sort(Comparator<T>)£º¸ø¶¨ÅÅĞò¹æÔò
+	 * ä¸­é—´æ“ä½œï¼Œsorted--æ’åº
+	 * sorted():æŒ‰ç…§å…ƒç´ å®ç°çš„Comparableæ¥å£çš„å¤§å°è§„åˆ™è¿›è¡Œæ’åº
+	 * sort(Comparator<T>)ï¼šç»™å®šæ’åºè§„åˆ™
 	 * 	
 	 * */
 	private static void sortedUsage(){
 		Stream<myStudent> students=getDataSourece();
-		//°´ÕÕÉıĞò½øĞĞÅÅĞò
+		//æŒ‰ç…§å‡åºè¿›è¡Œæ’åº
 		students.sorted((e1,e2)->e1.getAge()-e2.getAge()).forEach(System.out::println);
-		//student.sorted()Èç¹ûÓÃ¸Ã·½·¨£¬ÄÇÃ´ÔªËØ¶ÔÏó±ØĞëÊµÏÖÁËComparable½Ó¿Ú
+		//student.sorted()å¦‚æœç”¨è¯¥æ–¹æ³•ï¼Œé‚£ä¹ˆå…ƒç´ å¯¹è±¡å¿…é¡»å®ç°äº†Comparableæ¥å£
 	}
 	
 	
 	/**
-	 * ÖĞ¼ä²Ù×÷£¬limit&skip
-	 * 	limit£¬ÏŞÖÆ£¬±íÊ¾½ØÈ¡Á÷ÖĞµÄÖ¸¶¨ÊıÁ¿µÄÊı¾İ
-	 * 	skip£¬Ìø¹ı£¬±íÊ¾Ìø¹ıÖ¸¶¨ÊıÁ¿µÄÊı¾İ£¬½ØÈ¡Ê£ÓàµÄ²¿·Ö
+	 * ä¸­é—´æ“ä½œï¼Œlimit&skip
+	 * 	limitï¼Œé™åˆ¶ï¼Œè¡¨ç¤ºæˆªå–æµä¸­çš„æŒ‡å®šæ•°é‡çš„æ•°æ®
+	 * 	skipï¼Œè·³è¿‡ï¼Œè¡¨ç¤ºè·³è¿‡æŒ‡å®šæ•°é‡çš„æ•°æ®ï¼Œæˆªå–å‰©ä½™çš„éƒ¨åˆ†
 	 * 
 	 * */
 	private static void limtskipUsage(){
 		Stream<myStudent> students=getDataSourece();
-		//»ñÈ¡ÄêÁä×î´óµÄÈı¸öÈË
+		//è·å–å¹´é¾„æœ€å¤§çš„ä¸‰ä¸ªäºº
 		//students.sorted((e1,e2)->e2.getAge()-e1.getAge()).limit(3).forEach(System.out::println);
-		//»ñÈ¡ÄêÁä×î´óµÄµÚ¶şÈË¡¢µÚÈıÈË
+		//è·å–å¹´é¾„æœ€å¤§çš„ç¬¬äºŒäººã€ç¬¬ä¸‰äºº
 		students.sorted((e1,e2)->e2.getAge()-e1.getAge()).limit(3).skip(1).forEach(System.out::println);
 	}
 	
 	/**
-	 * ÖĞ¼ä²Ù×÷£¬mapÔªËØÓ³Éä£¬Ìá¹©Ò»¸öÓ³Éä¹æÔò£¬½«Á÷ÖĞÃ¿Ò»¸öÔªËØÌæ»»³ÉÖ¸¶¨µÄÔªËØ
+	 * ä¸­é—´æ“ä½œï¼Œmapå…ƒç´ æ˜ å°„ï¼Œæä¾›ä¸€ä¸ªæ˜ å°„è§„åˆ™ï¼Œå°†æµä¸­æ¯ä¸€ä¸ªå…ƒç´ æ›¿æ¢æˆæŒ‡å®šçš„å…ƒç´ 
 	 * 
 	 * */
 	private static void mapUsage(){
 		Stream<myStudent> students=getDataSourece();
 		Stream<myStudent> students2=getDataSourece();
 		Stream<myStudent> students3=getDataSourece();
-		//»ñÈ¡ËùÓĞÑ§ÉúµÄĞÕÃû
-		Stream<String> target=students.map(m->m.getName());//²ÎÊıÎªº¯ÊıÊ½½Ó¿Ú£¬Function<? super T, ? extends R> 
-		//±ØĞëÊµÏÖµÄ·½·¨ÎªR apply(T t);
-		//¿ÉÒÔ¼òĞ´³ÉmyStudent::getName()
+		//è·å–æ‰€æœ‰å­¦ç”Ÿçš„å§“å
+		Stream<String> target=students.map(m->m.getName());//å‚æ•°ä¸ºå‡½æ•°å¼æ¥å£ï¼ŒFunction<? super T, ? extends R> 
+		//å¿…é¡»å®ç°çš„æ–¹æ³•ä¸ºR apply(T t);
+		//å¯ä»¥ç®€å†™æˆmyStudent::getName()
 		target.forEach(System.out::println);
-		//»ñÈ¡ËùÓĞÑ§ÉúµÄÄêÁä
+		//è·å–æ‰€æœ‰å­¦ç”Ÿçš„å¹´é¾„
 		Stream<Integer> target2=students2.map(myStudent::getAge);
 		target2.forEach(System.out::println);
-		//ÁíÒ»ÖÖ»ñÈ¡»ù±¾Êı¾İÀàĞÍÁ÷µÄ·½·¨
+		//å¦ä¸€ç§è·å–åŸºæœ¬æ•°æ®ç±»å‹æµçš„æ–¹æ³•
 		IntStream target3=students3.mapToInt(myStudent::getAge);
 		IntSummaryStatistics iss=target3.summaryStatistics();
 		System.out.println(iss.getSum());
@@ -114,16 +114,16 @@ public class Stream_test2 {
 	}
 	
 	/**
-	 * ÖĞ¼ä²Ù×÷flatMap£¬±âÆ½»¯Ó³Éä
-	 * Ò»°ãÓÃÔÚmap·½·¨Ó³ÉäÍêºó£¬Á÷ÖĞµÄÊı¾İÊÇÈİÆ÷£¨Êı×é¡¢¼¯ºÏµÈ£©£¬¶øÎÒÃÇĞèÒª¶ÔÁ÷ÖĞµÄÈİÆ÷½øĞĞ´¦Àí
-	 * Ëü¿ÉÒÔ½«ÈİÆ÷ÖĞµÄÊı¾İÖ±½Ó¶ÁÈ¡µ½Á÷ÖĞ¡£
+	 * ä¸­é—´æ“ä½œflatMapï¼Œæ‰å¹³åŒ–æ˜ å°„
+	 * ä¸€èˆ¬ç”¨åœ¨mapæ–¹æ³•æ˜ å°„å®Œåï¼Œæµä¸­çš„æ•°æ®æ˜¯å®¹å™¨ï¼ˆæ•°ç»„ã€é›†åˆç­‰ï¼‰ï¼Œè€Œæˆ‘ä»¬éœ€è¦å¯¹æµä¸­çš„å®¹å™¨è¿›è¡Œå¤„ç†
+	 * å®ƒå¯ä»¥å°†å®¹å™¨ä¸­çš„æ•°æ®ç›´æ¥è¯»å–åˆ°æµä¸­ã€‚
 	 * 
 	 * */
 	private static void flatMapUsage(){
 		String[] arrays=new String[]{"abc","efg","hij","xyz"};
 		
 		Stream<String> stream=Arrays.stream(arrays);
-		//Í³¼Æ×Ö·û´®Êı×éÖĞ£¬ËùÓĞ³öÏÖµÄ×Ö·û
+		//ç»Ÿè®¡å­—ç¬¦ä¸²æ•°ç»„ä¸­ï¼Œæ‰€æœ‰å‡ºç°çš„å­—ç¬¦
 		//stream.map(e1->new String(e1).toCharArray()).forEach(e1->System.out.println(Arrays.toString(e1)));
 		stream.map(e1->e1.split("")).flatMap(e1->Arrays.stream(e1)).forEach(System.out::println);
 	}
@@ -131,7 +131,7 @@ public class Stream_test2 {
 
 
 /*
- * Êı¾İÔ´ÔªËØ¶ÔÏó
+ * æ•°æ®æºå…ƒç´ å¯¹è±¡
  * */
 class myStudent{
 	private String name;

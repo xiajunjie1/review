@@ -8,19 +8,19 @@ import java.util.ResourceBundle;
 
 import org.apache.commons.dbcp2.BasicDataSource;
 
-/*Êı¾İ¿âÁ¬½Ó³Ø
- * 	²»Ê¹ÓÃÁ¬½Ó³ØµÄÈ±µã£º
- * 		ÓëÊı¾İ¿âÁ¬½ÓµÄ¹ı³ÌÖĞ£¬·Ç³£ÏûºÄÄÚ´æ£¬Èç¹ûÓĞ´óÁ¿µÄÇëÇóÁ¬½ÓÊı¾İ¿â£¬å´»úµÄ¼¸ÂÊºÜ¸ß
+/*æ•°æ®åº“è¿æ¥æ± 
+ * 	ä¸ä½¿ç”¨è¿æ¥æ± çš„ç¼ºç‚¹ï¼š
+ * 		ä¸æ•°æ®åº“è¿æ¥çš„è¿‡ç¨‹ä¸­ï¼Œéå¸¸æ¶ˆè€—å†…å­˜ï¼Œå¦‚æœæœ‰å¤§é‡çš„è¯·æ±‚è¿æ¥æ•°æ®åº“ï¼Œå®•æœºçš„å‡ ç‡å¾ˆé«˜
  * 
- * 	Ô­Àí£º
- * 		Á¬½Ó³ØÔÚ³õÊ¼»¯½×¶Î£¬»áÒ»´ÎĞÔ´´½¨N¸öÁ¬½Ó¶ÔÏó£¬µ±ÓĞÇëÇó¹ıÀ´ºó£¬ÏÈ´ÓÁ¬½Ó³ØÖĞ·ÖÅä¿ÕÏĞ¶ÔÏó
- * 		Ê¹ÓÃÍê³Éºó£¬»ØÊÕ¶ÔÏó£¬´Ó¶øÊµÏÖÒ»¸öÁ¬½Ó¶ÔÏó±»¶à´ÎÊ¹ÓÃ
+ * 	åŸç†ï¼š
+ * 		è¿æ¥æ± åœ¨åˆå§‹åŒ–é˜¶æ®µï¼Œä¼šä¸€æ¬¡æ€§åˆ›å»ºNä¸ªè¿æ¥å¯¹è±¡ï¼Œå½“æœ‰è¯·æ±‚è¿‡æ¥åï¼Œå…ˆä»è¿æ¥æ± ä¸­åˆ†é…ç©ºé—²å¯¹è±¡
+ * 		ä½¿ç”¨å®Œæˆåï¼Œå›æ”¶å¯¹è±¡ï¼Œä»è€Œå®ç°ä¸€ä¸ªè¿æ¥å¯¹è±¡è¢«å¤šæ¬¡ä½¿ç”¨
  * 
  * 
- * 	³£ÓÃµÄÁ¬½Ó³Ø£º
+ * 	å¸¸ç”¨çš„è¿æ¥æ± ï¼š
  * 		DBCP	
  * 		C3P0
- * 		druid£ºÄ¿Ç°ĞÔÄÜ×îºÃµÄÁ¬½Ó³Ø
+ * 		druidï¼šç›®å‰æ€§èƒ½æœ€å¥½çš„è¿æ¥æ± 
  * */
 public class Conn_pool {
 	public static void main(String[] args){
@@ -37,11 +37,11 @@ class DBCP_pool{
 	private static String url;
 	private static String username;
 	private static String password;
-	private static int maxTotal;//×î´óÁ¬½ÓÊı
-	private static int maxIdle;//×î´ó¿ÕÏĞÊı
-	private static int minIdle;//×îĞ¡¿ÕÏĞÊı
-	private static int initialSize;//³õÊ¼»¯Á¬½ÓÊı
-	private static long maxWaitMillis;//´Ó³ØÖĞÈ¡connection×î´óµÈ´ıÊ±¼ä£¬µ¥Î»ms
+	private static int maxTotal;//æœ€å¤§è¿æ¥æ•°
+	private static int maxIdle;//æœ€å¤§ç©ºé—²æ•°
+	private static int minIdle;//æœ€å°ç©ºé—²æ•°
+	private static int initialSize;//åˆå§‹åŒ–è¿æ¥æ•°
+	private static long maxWaitMillis;//ä»æ± ä¸­å–connectionæœ€å¤§ç­‰å¾…æ—¶é—´ï¼Œå•ä½ms
 	private static BasicDataSource dataSource;
 	
 	static {
@@ -55,7 +55,7 @@ class DBCP_pool{
 		maxIdle=Integer.parseInt(rb.getString("maxIdle"));
 		initialSize=Integer.parseInt(rb.getString("initialSize"));
 		maxWaitMillis=Long.parseLong(rb.getString("maxWaitMillis"));
-		//»ñÈ¡´æ´¢³Ø¶ÔÏó
+		//è·å–å­˜å‚¨æ± å¯¹è±¡
 		dataSource.setDriverClassName(driver);
 		dataSource.setUrl(url);
 		dataSource.setUsername(username);
@@ -96,7 +96,7 @@ class DBCP_pool{
 				}
 				
 				if(conn!=null){
-					conn.close();//ÓÃDBCP³Ø»ñÈ¡µÄconnection»á±»»ØÊÕµ½DBCP³Øµ±ÖĞ
+					conn.close();//ç”¨DBCPæ± è·å–çš„connectionä¼šè¢«å›æ”¶åˆ°DBCPæ± å½“ä¸­
 				}
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block

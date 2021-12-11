@@ -1,33 +1,33 @@
 package review;
 
-//Ñ­»·±êÇ©
+//å¾ªç¯æ ‡ç­¾
 public class Review02 {
 	
-	//·½·¨µÄ¶¨Òå
-	//[·ÃÎÊÈ¨ÏŞĞŞÊÎ·û][ÆäËûĞŞÊÎ·û]·µ»ØÀàĞÍ ·½·¨Ãû×Ö([²ÎÊıÁĞ±í]){
-	//·½·¨Ìå
+	//æ–¹æ³•çš„å®šä¹‰
+	//[è®¿é—®æƒé™ä¿®é¥°ç¬¦][å…¶ä»–ä¿®é¥°ç¬¦]è¿”å›ç±»å‹ æ–¹æ³•åå­—([å‚æ•°åˆ—è¡¨]){
+	//æ–¹æ³•ä½“
 	//}
 	
 	
 	/*
-	 * ·½·¨µÄÖØÔØOverload
-	 * ÖØÔØÌõ¼ş£º
-	 * 	1¡¢·½·¨ÃûÏàÍ¬
-	 * 	2¡¢²ÎÊı²»Í¬£¨ÀàĞÍ¡¢ÊıÁ¿£©
+	 * æ–¹æ³•çš„é‡è½½Overload
+	 * é‡è½½æ¡ä»¶ï¼š
+	 * 	1ã€æ–¹æ³•åç›¸åŒ
+	 * 	2ã€å‚æ•°ä¸åŒï¼ˆç±»å‹ã€æ•°é‡ï¼‰
 	 * 
 	 * */
 	public static void OverLoadM(){
-		System.out.println("ÎÒÊÇÎŞ²Î·½·¨");
+		System.out.println("æˆ‘æ˜¯æ— å‚æ–¹æ³•");
 	}
 	public static void OverLoadM(int num1,int num2){
-		System.out.println("ÎÒµÄ²ÎÊıÊÇÕûÊı£¬²ÎÊı1: "+num1+"²ÎÊı2£º"+num2);
+		System.out.println("æˆ‘çš„å‚æ•°æ˜¯æ•´æ•°ï¼Œå‚æ•°1: "+num1+"å‚æ•°2ï¼š"+num2);
 	}
 	public static void OverLoadM(String str1){
-		System.out.println("ÎÒµÄ²ÎÊıÊÇ×Ö·û´®: "+str1);
+		System.out.println("æˆ‘çš„å‚æ•°æ˜¯å­—ç¬¦ä¸²: "+str1);
 	}
 	
 	public static void main(String[] args){
-		//Éè¶¨±êÇ©£¬ÅäºÏbreakÊ¹ÓÃ
+		//è®¾å®šæ ‡ç­¾ï¼Œé…åˆbreakä½¿ç”¨
 		OUTER:
 		for(int i=0;i<5;i++){
 			
@@ -42,7 +42,7 @@ public class Review02 {
 	
 	OverLoadM();
 	OverLoadM(1,2);
-	OverLoadM("×Ö·û´®·½·¨");
+	OverLoadM("å­—ç¬¦ä¸²æ–¹æ³•");
 		
 	}
 

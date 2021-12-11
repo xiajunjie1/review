@@ -1,19 +1,19 @@
 package review;
 
 /*
- * ObjectÀà
- * 	JavaÊÇËùÓÐÀàµÄ»ùÀà
+ * Objectç±»
+ * 	Javaæ˜¯æ‰€æœ‰ç±»çš„åŸºç±»
  * 
- * ObjectÀàÖÐµÄ·½·¨
+ * Objectç±»ä¸­çš„æ–¹æ³•
  * 	toString()
- * 		ObjectÖÐtoStringÄ¬ÈÏµÄÊµÏÖÊÇ·µ»ØgetClass().getName()+"@"+Integer.toHexString(hashCode())
- * 		µ±ÐèÒª°Ñµ±Ç°¶ÔÏó×ª»»³É×Ö·û´®µÄÐÎÊ½£¬»á×Ô¶¯µ÷ÓÃ¸Ã·½·¨
+ * 		Objectä¸­toStringé»˜è®¤çš„å®žçŽ°æ˜¯è¿”å›žgetClass().getName()+"@"+Integer.toHexString(hashCode())
+ * 		å½“éœ€è¦æŠŠå½“å‰å¯¹è±¡è½¬æ¢æˆå­—ç¬¦ä¸²çš„å½¢å¼ï¼Œä¼šè‡ªåŠ¨è°ƒç”¨è¯¥æ–¹æ³•
  * 
  * 	equals()
- * 		¿ÉÒÔÓÃÀ´×ö¶ÔÏó¼äµÄ±È½Ï£¬==ÊÇ±È½Ï±äÁ¿µÄµØÖ·
+ * 		å¯ä»¥ç”¨æ¥åšå¯¹è±¡é—´çš„æ¯”è¾ƒï¼Œ==æ˜¯æ¯”è¾ƒå˜é‡çš„åœ°å€
  * 
  * 	Objects.euqals(obj1,obj2)
- * 	ObjectsÎª¹¤¾ßÀà£¬¿ÉÒÔÓÃ¹¤¾ßÀàÖÐµÄeuqals·½·¨À´½øÐÐÁ½¸ö¶ÔÏóµÄ±È½Ï£¬¸Ã·½·¨¿ÉÒÔ±ÜÃâobj1.equals(obj2),obj1ÎªnullµÄÇé¿ö
+ * 	Objectsä¸ºå·¥å…·ç±»ï¼Œå¯ä»¥ç”¨å·¥å…·ç±»ä¸­çš„euqalsæ–¹æ³•æ¥è¿›è¡Œä¸¤ä¸ªå¯¹è±¡çš„æ¯”è¾ƒï¼Œè¯¥æ–¹æ³•å¯ä»¥é¿å…obj1.equals(obj2),obj1ä¸ºnullçš„æƒ…å†µ
  * 
  * 	getClass()
  * 	hashCode()
@@ -45,14 +45,14 @@ class Subobject{
 	}
 	
 	
-	//ÖØÐ´equals,Èô³ÉÔ±±äÁ¿µÄÃû×ÖÏàÍ¬£¬ÊÓ×÷ÏàµÈ
+	//é‡å†™equals,è‹¥æˆå‘˜å˜é‡çš„åå­—ç›¸åŒï¼Œè§†ä½œç›¸ç­‰
 	/*
-	 * ×Ô¶¨Òå±È½ÏµÄÊ±ºòÐèÒª×ñÊØµÄ¹æ·¶:
-	 * 	Èç¹ûµØÖ·ÏàÍ¬£¬ÔòÒ»¶¨·µ»Øtrue
-	 * 	Èç¹ûoÊÇnull£¬ÔòÒ»¶¨·µ»Øfalse
-	 * 	Èç¹ûÁ½¸ö¶ÔÏóÀàÐÍ²»Í¬£¬ÔòÒ»¶¨·µ»Øfalse
-	 * 	Èç¹ûa.equals(b)³ÉÁ¢£¬Ôòb.equals(a)³ÉÁ¢
-	 * 	Èç¹ûa.equals(b)³ÉÁ¢£¬b.equals(c)³ÉÁ¢£¬Ôòa.equals(c)³ÉÁ¢
+	 * è‡ªå®šä¹‰æ¯”è¾ƒçš„æ—¶å€™éœ€è¦éµå®ˆçš„è§„èŒƒ:
+	 * 	å¦‚æžœåœ°å€ç›¸åŒï¼Œåˆ™ä¸€å®šè¿”å›žtrue
+	 * 	å¦‚æžœoæ˜¯nullï¼Œåˆ™ä¸€å®šè¿”å›žfalse
+	 * 	å¦‚æžœä¸¤ä¸ªå¯¹è±¡ç±»åž‹ä¸åŒï¼Œåˆ™ä¸€å®šè¿”å›žfalse
+	 * 	å¦‚æžœa.equals(b)æˆç«‹ï¼Œåˆ™b.equals(a)æˆç«‹
+	 * 	å¦‚æžœa.equals(b)æˆç«‹ï¼Œb.equals(c)æˆç«‹ï¼Œåˆ™a.equals(c)æˆç«‹
 	 * 
 	 * */
 	@Override

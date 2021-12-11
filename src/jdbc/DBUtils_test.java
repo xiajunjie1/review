@@ -10,33 +10,33 @@ import org.apache.commons.dbutils.handlers.BeanListHandler;
 import data.bean.Account;
 
 /*
- * ĞèÒªµ¼Èëcommons-dbutils-xx.jarµÄjar°ü
- * Dbutils¹¤¾ßÀàÑ§Ï°
- * 	DbutilsÖĞÓĞÁ½¸öºËĞÄµÄ×é¼ş
- * 		QueryRunnerÖĞÌá¹©¶ÔSQLÓï¾ä²Ù×÷µÄapi
- * 		ResultSetHandler½Ó¿Ú£¬ÓÃÓÚ¶¨Òåselect²Ù×÷ºó£¬ÔõÃ´·â×°½á¹û¼¯
- * 		DbUtilsÀàÊÇÒ»¸ö¹¤¾ßÀà£¬¶¨ÒåÁË¹Ø±Õ×ÊÔ´ÓëÊÂÎñ´¦ÀíµÄ·½·¨
+ * éœ€è¦å¯¼å…¥commons-dbutils-xx.jarçš„jaråŒ…
+ * Dbutilså·¥å…·ç±»å­¦ä¹ 
+ * 	Dbutilsä¸­æœ‰ä¸¤ä¸ªæ ¸å¿ƒçš„ç»„ä»¶
+ * 		QueryRunnerä¸­æä¾›å¯¹SQLè¯­å¥æ“ä½œçš„api
+ * 		ResultSetHandleræ¥å£ï¼Œç”¨äºå®šä¹‰selectæ“ä½œåï¼Œæ€ä¹ˆå°è£…ç»“æœé›†
+ * 		DbUtilsç±»æ˜¯ä¸€ä¸ªå·¥å…·ç±»ï¼Œå®šä¹‰äº†å…³é—­èµ„æºä¸äº‹åŠ¡å¤„ç†çš„æ–¹æ³•
  * 
  * 	QueryRunner
- * 		QueryRunner(DataSource ds),´«Èë²ÎÊıÎªÁ¬½Ó³Ø£¬»ñµÃQueryRunner¶ÔÏó
- * 		update(String sql,Object param...),Ö´ĞĞinsert update delete²Ù×÷
- * 		query(String sql,ResultSetHandler rsh,Object param...)Ö´ĞĞselect²Ù×÷
+ * 		QueryRunner(DataSource ds),ä¼ å…¥å‚æ•°ä¸ºè¿æ¥æ± ï¼Œè·å¾—QueryRunnerå¯¹è±¡
+ * 		update(String sql,Object param...),æ‰§è¡Œinsert update deleteæ“ä½œ
+ * 		query(String sql,ResultSetHandler rsh,Object param...)æ‰§è¡Œselectæ“ä½œ
  * 
  * */
 public class DBUtils_test {
 public static void main(String[] args){
-	//ÀûÓÃdbutils½øĞĞÊı¾İµÄĞŞ¸Ä
+	//åˆ©ç”¨dbutilsè¿›è¡Œæ•°æ®çš„ä¿®æ”¹
 	QueryRunner qr=new QueryRunner();
 	String sql="update bank_account set account_id=?,username=?,password=?,money=? where account_id=?";
 	Object[] objs=new Object[]{123456789,"xia","123456",10001.12,123456789};
 	try {
 		qr.update(DruidConnctionPool.getConn(),sql,objs);
-		//BeanHandlerÊÇResultSetHandler½Ó¿ÚµÄÊµÏÖÀà£¬½«²éÑ¯Êı¾İ½á¹ûµÄµÚÒ»ĞĞÊı¾İ·â×°µ½javabeanÊµÀıÖĞ
+		//BeanHandleræ˜¯ResultSetHandleræ¥å£çš„å®ç°ç±»ï¼Œå°†æŸ¥è¯¢æ•°æ®ç»“æœçš„ç¬¬ä¸€è¡Œæ•°æ®å°è£…åˆ°javabeanå®ä¾‹ä¸­
 		sql="Select * from bank_account where account_id=?";
 		Account ac=qr.query(DruidConnctionPool.getConn(),sql, new BeanHandler<Account>(Account.class),123456789);
 		System.out.println(ac);
 		sql="Select * from bank_account";
-		//BeanListHandlerÊÇResultSetHandlerµÄÊµÏÖÀà£¬½«½á¹û¼¯ÖĞµÄÃ¿Ò»ĞĞÊı¾İ¶¼·â×°µ½Ò»¸ö¶ÔÓ¦µÄJavaBeanÊµÀıÖĞ£¬´æ·Åµ½ListÀï
+		//BeanListHandleræ˜¯ResultSetHandlerçš„å®ç°ç±»ï¼Œå°†ç»“æœé›†ä¸­çš„æ¯ä¸€è¡Œæ•°æ®éƒ½å°è£…åˆ°ä¸€ä¸ªå¯¹åº”çš„JavaBeanå®ä¾‹ä¸­ï¼Œå­˜æ”¾åˆ°Listé‡Œ
 		List<Account> list=qr.query(DruidConnctionPool.getConn(), sql, new BeanListHandler<Account>(Account.class));
 		System.out.println(list);
 	} catch (SQLException e) {

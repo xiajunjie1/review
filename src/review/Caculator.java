@@ -4,17 +4,17 @@ import java.util.List;
 import java.util.LinkedList;
 import java.util.Scanner;
 /**
- * ÊµÏÖÏÈ³Ë³ıºó¼Ó¼õµÄ¹¦ÄÜ
- * Ë¼Â·£¬ÀûÓÃÁ½¸öÕ»´æ·ÅÊı×Ö£¬ÏÈÏûÈ¥À¨ºÅºÍ³Ë·½£¬ÔÚÏûÈ¥³Ë³ı£¬×îºóÏûÈ¥¼Ó¼õ
- * ¸Ã³ÌĞòÄ¿Ç°Ê¹ÓÃÕûĞÍ²âÊÔ£¬ÉÔºó¿É»»³ÉdoubleÀàĞÍ³¢ÊÔ
+ * å®ç°å…ˆä¹˜é™¤ååŠ å‡çš„åŠŸèƒ½
+ * æ€è·¯ï¼Œåˆ©ç”¨ä¸¤ä¸ªæ ˆå­˜æ”¾æ•°å­—ï¼Œå…ˆæ¶ˆå»æ‹¬å·å’Œä¹˜æ–¹ï¼Œåœ¨æ¶ˆå»ä¹˜é™¤ï¼Œæœ€åæ¶ˆå»åŠ å‡
+ * è¯¥ç¨‹åºç›®å‰ä½¿ç”¨æ•´å‹æµ‹è¯•ï¼Œç¨åå¯æ¢æˆdoubleç±»å‹å°è¯•
  * 
- * 2021.10.10-----ÒÑ½«ËùÓĞÕûĞÎ×ª»»³ÉÁËdoubleÀàĞÍ
+ * 2021.10.10-----å·²å°†æ‰€æœ‰æ•´å½¢è½¬æ¢æˆäº†doubleç±»å‹
  */
 public class Caculator
 {
   public static void main(String[] args){
       Caculator ca=new Caculator();
-      System.out.println("ÇëÊäÈëĞèÒª¼ÆËãµÄ±í´ïÊ½£º");
+      System.out.println("è¯·è¾“å…¥éœ€è¦è®¡ç®—çš„è¡¨è¾¾å¼ï¼š");
       Scanner sc=new Scanner(System.in);
       String exp="";
       if(sc.hasNextLine())
@@ -23,7 +23,7 @@ public class Caculator
       }
       sc.close();
       LinkedList<String> list=ca.caculator(exp);
-      System.out.println("¼ÆËã"+exp+"µÄÖµ----");
+      System.out.println("è®¡ç®—"+exp+"çš„å€¼----");
       System.out.println(list.pop());
     }
     
@@ -51,29 +51,29 @@ public class Caculator
     }
     
     public LinkedList<String> caculator(String exp){
-        StringBuilder sb=new StringBuilder(exp);//½ÓÊÕ±í´ïÊ½
-        StringBuilder num=new StringBuilder();//½ÓÊÕÊı×Ö×Ö·û
+        StringBuilder sb=new StringBuilder(exp);//æ¥æ”¶è¡¨è¾¾å¼
+        StringBuilder num=new StringBuilder();//æ¥æ”¶æ•°å­—å­—ç¬¦
         LinkedList<String> explist=new LinkedList<String>();
         int len=sb.length();
         for(int i=0;i<len;i++){
           // System.out.println("okokok---->"+sb.charAt(i)+"boolean value is:"+isSymbol(sb.charAt(i)));
             if(isSymbol(sb.charAt(i))){
-            //¸Ã×Ö·ûÎªÊı×Ö»òĞ¡Êıµã
+            //è¯¥å­—ç¬¦ä¸ºæ•°å­—æˆ–å°æ•°ç‚¹
             num.append(sb.charAt(i));
             if(i==len-1){
-            explist.push(num.toString());//·ñÔò×îºóÒ»¸öÊı×Ö¼Ó²»½øÈ¥£¬ÒòÎªÃ»ÓĞÆäËû·ûºÅÁË
+            explist.push(num.toString());//å¦åˆ™æœ€åä¸€ä¸ªæ•°å­—åŠ ä¸è¿›å»ï¼Œå› ä¸ºæ²¡æœ‰å…¶ä»–ç¬¦å·äº†
             }
             }
             else{
             if(num.toString()!=null&&!num.toString().equals("")){
-                //ÓÉÓÚÀ¨ºÅÇ°ºóÒ²ÊÇ×Ö·û£¬ËùÒÔÈô²»¼ÓÈë¸Ã²Ù×÷£¬»á³öÏÖ²åÈë¿Õ×Ö·ûµÄÇé¿ö
-                explist.push(num.toString());//½«Æ´´ÕºÃµÄÊı×Ö×Ö·ûÈëÕ»
+                //ç”±äºæ‹¬å·å‰åä¹Ÿæ˜¯å­—ç¬¦ï¼Œæ‰€ä»¥è‹¥ä¸åŠ å…¥è¯¥æ“ä½œï¼Œä¼šå‡ºç°æ’å…¥ç©ºå­—ç¬¦çš„æƒ…å†µ
+                explist.push(num.toString());//å°†æ‹¼å‡‘å¥½çš„æ•°å­—å­—ç¬¦å…¥æ ˆ
         }
             //System.out.println("jfjskfjsk---->"+num);
-            num.setLength(0);//Çå¿ÕStringBuilder
+            num.setLength(0);//æ¸…ç©ºStringBuilder
             
             if(sb.charAt(i)==')'){
-                //À¨ºÅ½áÊø£¬½«À¨ºÅµ±ÖĞµÄÄÚÈİ³öÕ»£¬²¢¼ÆËã
+                //æ‹¬å·ç»“æŸï¼Œå°†æ‹¬å·å½“ä¸­çš„å†…å®¹å‡ºæ ˆï¼Œå¹¶è®¡ç®—
               LinkedList<String> templist=new LinkedList<String>();
             while(true){
             String str=explist.pop();
@@ -94,7 +94,7 @@ public class Caculator
             templist.push(val3+"");
             }
             else{
-            //+ -·ûºÅ»òÕßÆÕÍ¨µÄÊı×Ö
+            //+ -ç¬¦å·æˆ–è€…æ™®é€šçš„æ•°å­—
             if(!str.equals("("))
             templist.push(str);
             
@@ -128,7 +128,7 @@ public class Caculator
             }
         }
             else if(sb.charAt(i)=='^'){
-                //³Ë·½ÏÈËã
+                //ä¹˜æ–¹å…ˆç®—
             String val=explist.pop();
                 double val1=Double.parseDouble(val);
                 int time=Integer.parseInt(sb.charAt(i+1)+"");
@@ -140,7 +140,7 @@ public class Caculator
                 explist.push((val2+""));
             }
             else{
-            //(¡¢+¡¢-¡¢*¡¢/µÈÆÕÍ¨·ûºÅ
+            //(ã€+ã€-ã€*ã€/ç­‰æ™®é€šç¬¦å·
             explist.push(sb.charAt(i)+"");
             }
             
@@ -148,7 +148,7 @@ public class Caculator
             }
     }
     if(explist.size()>1){
-    //½«()ÖĞµÄÄÚÈİºÍ³Ë·½¼ÆËãÍê³É£¬ÇÒ±í´ïÊ½ËùÓĞ×Ö·û²åÈëµ½Õ»ºó£¬Èô»¹ÓĞ1¸öÒÔÉÏµÄÔªËØ£¬Ôò»¹ĞèÒª¼ÆËã
+    //å°†()ä¸­çš„å†…å®¹å’Œä¹˜æ–¹è®¡ç®—å®Œæˆï¼Œä¸”è¡¨è¾¾å¼æ‰€æœ‰å­—ç¬¦æ’å…¥åˆ°æ ˆåï¼Œè‹¥è¿˜æœ‰1ä¸ªä»¥ä¸Šçš„å…ƒç´ ï¼Œåˆ™è¿˜éœ€è¦è®¡ç®—
     LinkedList<String> templist=new LinkedList<String>();
     //System.out.println(explist.toString());
     while(explist.size()>0){
@@ -176,7 +176,7 @@ public class Caculator
     templist.push(str);
     }
 }
-//³Ë³ıÒÑ¾­ËãÍê£¬ÔÚËãÒ»´Î¼Ó¼õ
+//ä¹˜é™¤å·²ç»ç®—å®Œï¼Œåœ¨ç®—ä¸€æ¬¡åŠ å‡
 while(templist.size()>0){
 String str=templist.pop();
 if(str.equals("+")){
@@ -196,7 +196,7 @@ double val3=val1-val2;
 explist.push(val3+"");
 }
 else{
-explist.push(str);//Êı×Ö»òĞ¡Êıµã
+explist.push(str);//æ•°å­—æˆ–å°æ•°ç‚¹
 
 }
 }

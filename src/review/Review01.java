@@ -9,8 +9,8 @@ public class Review01 {
 	}
 	
 	public static void main(String[] args){
-		System.out.println("-----------∏¥œ∞01----------");
-		//long l1=1000000000000;---ª·±®¥Ì
+		System.out.println("-----------Â§ç‰π†01----------");
+		//long l1=1000000000000;---‰ºöÊä•Èîô
 		long l2=1000000000000L;
 		//getType(l1);
 		getType(l2);

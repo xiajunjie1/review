@@ -6,23 +6,23 @@ import java.util.List;
 import data.bean.Account;
 
 /*
- * dao½Ó¿Ú£¬ÓÃÀ´¶¨Òå¶ÔÊı¾İ¿âµÄ²Ù×÷¹æÔò
- * ÒÔÊı¾İ¿âµÄaccount_bank±íÎªÀı
+ * daoæ¥å£ï¼Œç”¨æ¥å®šä¹‰å¯¹æ•°æ®åº“çš„æ“ä½œè§„åˆ™
+ * ä»¥æ•°æ®åº“çš„account_bankè¡¨ä¸ºä¾‹
  * 
  * */
 public interface Db_dao {
-	//Ôö
+	//å¢
 	public void add(Account ac)throws SQLException;
 	
-	//É¾
+	//åˆ 
 	public void delete(int account_id)throws SQLException;
 	
-	//²é-ÓÃÒøĞĞid
+	//æŸ¥-ç”¨é“¶è¡Œid
 	public Account Findbyid(int account_id)throws SQLException;
 	
-	//²é-ËùÓĞÓÃ»§
+	//æŸ¥-æ‰€æœ‰ç”¨æˆ·
 	public List<Account> Findall()throws SQLException;
 	
-	//²é-·ÖÒ³²éÕÒ
+	//æŸ¥-åˆ†é¡µæŸ¥æ‰¾
 	public List<Account> Findbypage(int page,int pagesize)throws SQLException;
 }

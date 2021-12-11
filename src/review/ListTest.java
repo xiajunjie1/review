@@ -1,41 +1,41 @@
 package review;
 import java.util.*;
-//collectionµÄ×Ó½Ó¿Ú
-//ÊµÏÖÀàArrayList,LinkedList
-//ArrayListµ×²ãÊÇÊ¹ÓÃµÄÊı×é£¬µØÖ·Á¬Ğø£¬²éÕÒĞ§ÂÊ¸ß
-//LinkedListµ×²ãÊ¹ÓÃµÄÊÇË«ÏòÁ´±í£¬ÔöÉ¾Ğ§ÂÊ¸ü¸ß
-//List¼Ì³ĞÁËCollectionËùÓĞµÄ·½·¨
+//collectionçš„å­æ¥å£
+//å®ç°ç±»ArrayList,LinkedList
+//ArrayListåº•å±‚æ˜¯ä½¿ç”¨çš„æ•°ç»„ï¼Œåœ°å€è¿ç»­ï¼ŒæŸ¥æ‰¾æ•ˆç‡é«˜
+//LinkedListåº•å±‚ä½¿ç”¨çš„æ˜¯åŒå‘é“¾è¡¨ï¼Œå¢åˆ æ•ˆç‡æ›´é«˜
+//Listç»§æ‰¿äº†Collectionæ‰€æœ‰çš„æ–¹æ³•
 public class ListTest {
 public static void main(String[] args){
 	List<String> list=new ArrayList<String>();
-	//listÌØÓĞµÄ·½·¨
+	//listç‰¹æœ‰çš„æ–¹æ³•
 	list.add("abc");
 	list.add("ppp");
 	list.add("def");
-	list.add(3,"gkj");//3´ú±íµÚËÄ¸öÔªËØ£¬index×î´óÔÚµ±Ç°¼¯ºÏ×îºóÒ»¸öÔªËØºóÒ»¸ö£¬ÓëÇ°Ò»¸öÔªËØÖ®¼ä²»ÄÜÓĞnull
+	list.add(3,"gkj");//3ä»£è¡¨ç¬¬å››ä¸ªå…ƒç´ ï¼Œindexæœ€å¤§åœ¨å½“å‰é›†åˆæœ€åä¸€ä¸ªå…ƒç´ åä¸€ä¸ªï¼Œä¸å‰ä¸€ä¸ªå…ƒç´ ä¹‹é—´ä¸èƒ½æœ‰null
 	list.add("def");
 	System.out.println(list);
 	list.replaceAll(ele -> ele+".txt");
 	System.out.println(list);
 	int index = list.indexOf("ppp.txt");
-	System.out.println("Ë÷Òı£º"+index);
-	int index2=list.lastIndexOf("def.txt");//Èç¹ûÓĞ¶à¸öÏàÍ¬µÄÔªËØ£¬·µ»Ø×îºóÒ»¸öµÄË÷Òı
-	System.out.println("Ë÷Òı2£º"+index2);
+	System.out.println("ç´¢å¼•ï¼š"+index);
+	int index2=list.lastIndexOf("def.txt");//å¦‚æœæœ‰å¤šä¸ªç›¸åŒçš„å…ƒç´ ï¼Œè¿”å›æœ€åä¸€ä¸ªçš„ç´¢å¼•
+	System.out.println("ç´¢å¼•2ï¼š"+index2);
 	
 	List<String> templist=new ArrayList<String>();
 	templist.add("fff");
 	templist.add("er");
 	templist.add("fghjk");
 	templist.add("a");
-	//ÅÅĞò
-	//templist.sort(new mycompare());//ĞèÒª´«ÈëComparator½Ó¿ÚµÄÊµÏÖÀà
-	templist.sort((ele1,ele2) -> ele1.length()-ele2.length());//Ê¹ÓÃlambda±í´ïÊ½ÊµÏÖ
+	//æ’åº
+	//templist.sort(new mycompare());//éœ€è¦ä¼ å…¥Comparatoræ¥å£çš„å®ç°ç±»
+	templist.sort((ele1,ele2) -> ele1.length()-ele2.length());//ä½¿ç”¨lambdaè¡¨è¾¾å¼å®ç°
 	System.out.println(templist);
 	int len=templist.size();
 	
 	System.out.println(templist.get(len-1));
 	
-	//ListÌØÓĞµÄµü´úÆ÷£¬Ä¬ÈÏµÄµü´úÆ÷Ö»ÄÜÊµÏÖ±éÀúÖĞÉ¾³ıÔªËØ£¬¶ø¸Ãµü´úÆ÷¿ÉÒÔÊµÏÖÔöÉ¾¸Ä
+	//Listç‰¹æœ‰çš„è¿­ä»£å™¨ï¼Œé»˜è®¤çš„è¿­ä»£å™¨åªèƒ½å®ç°éå†ä¸­åˆ é™¤å…ƒç´ ï¼Œè€Œè¯¥è¿­ä»£å™¨å¯ä»¥å®ç°å¢åˆ æ”¹
 	ListIterator<String> lit=templist.listIterator();
 	while(lit.hasNext()){
 		String ele=lit.next();
@@ -58,8 +58,8 @@ class mycompare implements Comparator<String>{
 
 	@Override
 	public int compare(String o1, String o2) {
-		// o1´ú±í¼¯ºÏÖĞ×îºóÒ»¸öÔªËØ£¬o2´ú±ío1µÄÉÏÒ»¸öÔªËØ£¬¸Ã·µ»ØÖµ´ú±í°´³¤¶ÈÉıĞòÅÅĞò
-		//·µ»ØÖµµÄ½á¹û´óÓÚµÈÓÚ0±íÊ¾²»½»»»Î»ÖÃ£¬·ñÔòĞèÒª½»»»Î»ÖÃ
+		// o1ä»£è¡¨é›†åˆä¸­æœ€åä¸€ä¸ªå…ƒç´ ï¼Œo2ä»£è¡¨o1çš„ä¸Šä¸€ä¸ªå…ƒç´ ï¼Œè¯¥è¿”å›å€¼ä»£è¡¨æŒ‰é•¿åº¦å‡åºæ’åº
+		//è¿”å›å€¼çš„ç»“æœå¤§äºç­‰äº0è¡¨ç¤ºä¸äº¤æ¢ä½ç½®ï¼Œå¦åˆ™éœ€è¦äº¤æ¢ä½ç½®
 		return o1.length()-o2.length();
 	}
 	

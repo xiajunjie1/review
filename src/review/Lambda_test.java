@@ -1,40 +1,40 @@
 package review;
 
 /*
- * Lambda±í´ïÊ½Ñ§Ï°
+ * Lambdaè¡¨è¾¾å¼å­¦ä¹ 
  * 
- * 	java8µÄĞÂÌØĞÔ
- * 	´Ó±¾ÖÊÉÏÀ´½²£¬lambda±í´ïÊ½ÊÇÒ»¸öÄäÃûº¯Êı£¬¿ÉÒÔÊ¹ÓÃÕâ¸öÄäÃûº¯Êı£¬ÊµÏÖ½Ó¿ÚÖĞµÄ·½·¨¡£¶Ô½Ó¿Ú½øĞĞ·Ç³£¼òµ¥µÄÊµÏÖ
- * 	Í¨³£À´Ëµ£¬lambda±í´ïÊ½£¬ÊÇÎªÁË¼ò»¯½Ó¿Ú¶øÊµÏÖµÄ
- * 	ÊµÏÖ½Ó¿ÚµÄ·½·¨£º¶¨ÒåÊµÏÖÀà¡¢ÄäÃûÄÚ²¿Àà£¬¶ølambda±í´ïÊ½±ÈÕâÁ½ÖÖ·½·¨¶¼¼òµ¥
+ * 	java8çš„æ–°ç‰¹æ€§
+ * 	ä»æœ¬è´¨ä¸Šæ¥è®²ï¼Œlambdaè¡¨è¾¾å¼æ˜¯ä¸€ä¸ªåŒ¿åå‡½æ•°ï¼Œå¯ä»¥ä½¿ç”¨è¿™ä¸ªåŒ¿åå‡½æ•°ï¼Œå®ç°æ¥å£ä¸­çš„æ–¹æ³•ã€‚å¯¹æ¥å£è¿›è¡Œéå¸¸ç®€å•çš„å®ç°
+ * 	é€šå¸¸æ¥è¯´ï¼Œlambdaè¡¨è¾¾å¼ï¼Œæ˜¯ä¸ºäº†ç®€åŒ–æ¥å£è€Œå®ç°çš„
+ * 	å®ç°æ¥å£çš„æ–¹æ³•ï¼šå®šä¹‰å®ç°ç±»ã€åŒ¿åå†…éƒ¨ç±»ï¼Œè€Œlambdaè¡¨è¾¾å¼æ¯”è¿™ä¸¤ç§æ–¹æ³•éƒ½ç®€å•
  * 
- * 	²¢²»ÊÇËùÓĞµÄ½Ó¿Ú¶¼ÄÜÓÃlambda±í´ïÊ½ÊµÏÖµÄ
- * 		½Ó¿Úµ±ÖĞ±ØĞëÒªÊµÏÖµÄ·½·¨ÓĞÇÒÖ»ÓĞÒ»¸öµÄ½Ó¿Ú£¬²Å¿ÉÒÔÓÃlambda±í´ïÊ½ÊµÏÖ£¬¼´Ö»ÄÜlambda±í´ïÊ½Ö»ÄÜÊµÏÖº¯ÊıÊ½½Ó¿Ú
+ * 	å¹¶ä¸æ˜¯æ‰€æœ‰çš„æ¥å£éƒ½èƒ½ç”¨lambdaè¡¨è¾¾å¼å®ç°çš„
+ * 		æ¥å£å½“ä¸­å¿…é¡»è¦å®ç°çš„æ–¹æ³•æœ‰ä¸”åªæœ‰ä¸€ä¸ªçš„æ¥å£ï¼Œæ‰å¯ä»¥ç”¨lambdaè¡¨è¾¾å¼å®ç°ï¼Œå³åªèƒ½lambdaè¡¨è¾¾å¼åªèƒ½å®ç°å‡½æ•°å¼æ¥å£
  * 		
- * 	º¯ÊıÊ½½Ó¿Ú
- * 		Ò»¸ö½Ó¿ÚÖĞÒªÇó±ØĞëÊµÏÖµÄ³éÏó·½·¨ÓĞÇÒÖ»ÓĞÒ»¸ö£¬ÕâÑùµÄ½Ó¿Ú³ÆÖ®Îªº¯ÊıÊ½½Ó¿Ú
- * 		¿ÉÒÔÓÃ@FunctionalInterface×¢½â£¬À´È·±£½Ó¿ÚÊÇÒ»¸öº¯ÊıÊ½½Ó¿Ú
+ * 	å‡½æ•°å¼æ¥å£
+ * 		ä¸€ä¸ªæ¥å£ä¸­è¦æ±‚å¿…é¡»å®ç°çš„æŠ½è±¡æ–¹æ³•æœ‰ä¸”åªæœ‰ä¸€ä¸ªï¼Œè¿™æ ·çš„æ¥å£ç§°ä¹‹ä¸ºå‡½æ•°å¼æ¥å£
+ * 		å¯ä»¥ç”¨@FunctionalInterfaceæ³¨è§£ï¼Œæ¥ç¡®ä¿æ¥å£æ˜¯ä¸€ä¸ªå‡½æ•°å¼æ¥å£
  * 
- * lambda±í´ïÊ½µÄÓï·¨£º
- * 		ÓÉÓÚlambda±íÊ¾µÄ±¾ÖÊÊÇÒ»¸öÄäÃû·½·¨£¬ËùÒÔÎÒÃÇ²»ĞèÒª¹Ø×¢½Ó¿ÚÖĞĞèÒªÊµÏÖµÄ·½·¨µÄÃû×Ö£¬ÎÒÃÇÖ»ĞèÒª¹Ø×¢²ÎÊıÁĞ±íºÍ·½·¨Ìå
- * 		(²ÎÊıÁĞ±í)->{	·½·¨Ìå...	};
- * 		²ÎÊıÁĞ±íÒª±£³ÖºÍ½Ó¿ÚÖĞ¶¨ÒåµÄ·½·¨ĞÎ²ÎÁĞ±íÒ»ÖÂ
- * 		Èç¹ûÓĞ·µ»ØÖµĞèÒªÔÚ·½·¨ÌåÖĞreturn
- * 		->ÓÃÀ´·Ö¸ô²ÎÊıÁĞ±íºÍ·½·¨Ìå
+ * lambdaè¡¨è¾¾å¼çš„è¯­æ³•ï¼š
+ * 		ç”±äºlambdaè¡¨ç¤ºçš„æœ¬è´¨æ˜¯ä¸€ä¸ªåŒ¿åæ–¹æ³•ï¼Œæ‰€ä»¥æˆ‘ä»¬ä¸éœ€è¦å…³æ³¨æ¥å£ä¸­éœ€è¦å®ç°çš„æ–¹æ³•çš„åå­—ï¼Œæˆ‘ä»¬åªéœ€è¦å…³æ³¨å‚æ•°åˆ—è¡¨å’Œæ–¹æ³•ä½“
+ * 		(å‚æ•°åˆ—è¡¨)->{	æ–¹æ³•ä½“...	};
+ * 		å‚æ•°åˆ—è¡¨è¦ä¿æŒå’Œæ¥å£ä¸­å®šä¹‰çš„æ–¹æ³•å½¢å‚åˆ—è¡¨ä¸€è‡´
+ * 		å¦‚æœæœ‰è¿”å›å€¼éœ€è¦åœ¨æ–¹æ³•ä½“ä¸­return
+ * 		->ç”¨æ¥åˆ†éš”å‚æ•°åˆ—è¡¨å’Œæ–¹æ³•ä½“
  * 
- * lambda±í´ïÊ½µÄÓï·¨½ø½×£º
- * 		¿ÉÒÔ¼ò»¯lambda±í´ïÊ½µÄ»ù´¡Óï·¨
- * 		²ÎÊı²¿·ÖµÄ¾«¼ò£º
- * 			ÔÚĞ´lambda±í´ïÊ½µÄÊ±ºò£¬²ÎÊıÁĞ±íÖĞµÄ²ÎÊıÀàĞÍ¿ÉÒÔ²»Ğ´(a,b)->{....}
- * 			²ÎÊıÁĞ±íÖĞµÄ²ÎÊı£¬ÓĞÇÒÖ»ÓĞÒ»¸öµÄÊ±ºò£¬Ğ¡À¨ºÅ¿ÉÒÔÊ¡ÂÔ
- * 		·½·¨Ìå²¿·ÖµÄ¾«¼ò£º
- * 			·½·¨ÌåÖĞÖ»ÓĞÒ»¾ä»°£¬´óÀ¨ºÅ¿ÉÒÔÊ¡ÂÔ£¬ÈôÕâÒ»¾ä»°ÊÇreturnÓï¾ä£¬ÄÇÃ´Ê¡ÂÔ´óÀ¨ºÅµÄÍ¬Ê±£¬returnÒ²±ØĞëÊ¡ÂÔ
+ * lambdaè¡¨è¾¾å¼çš„è¯­æ³•è¿›é˜¶ï¼š
+ * 		å¯ä»¥ç®€åŒ–lambdaè¡¨è¾¾å¼çš„åŸºç¡€è¯­æ³•
+ * 		å‚æ•°éƒ¨åˆ†çš„ç²¾ç®€ï¼š
+ * 			åœ¨å†™lambdaè¡¨è¾¾å¼çš„æ—¶å€™ï¼Œå‚æ•°åˆ—è¡¨ä¸­çš„å‚æ•°ç±»å‹å¯ä»¥ä¸å†™(a,b)->{....}
+ * 			å‚æ•°åˆ—è¡¨ä¸­çš„å‚æ•°ï¼Œæœ‰ä¸”åªæœ‰ä¸€ä¸ªçš„æ—¶å€™ï¼Œå°æ‹¬å·å¯ä»¥çœç•¥
+ * 		æ–¹æ³•ä½“éƒ¨åˆ†çš„ç²¾ç®€ï¼š
+ * 			æ–¹æ³•ä½“ä¸­åªæœ‰ä¸€å¥è¯ï¼Œå¤§æ‹¬å·å¯ä»¥çœç•¥ï¼Œè‹¥è¿™ä¸€å¥è¯æ˜¯returnè¯­å¥ï¼Œé‚£ä¹ˆçœç•¥å¤§æ‹¬å·çš„åŒæ—¶ï¼Œreturnä¹Ÿå¿…é¡»çœç•¥
  * 
- * lambda±í´ïÊ½º¯ÊıµÄÒıÓÃ£º
- * 		ÔÚlambda±í´ïÊ½ÖĞ²»ÒË³öÏÖ½ÏÎª¸´ÔÓµÄÂß¼­£¬Èç¹ûÓĞÕâÖÖÇé¿ö£¬¿ÉÒÔ°Ñ·½·¨Ìåµ¥¶ÀĞ´Ò»¸ö·½·¨£¬lambda±í´ïÊ½Ö±½ÓÒıÓÃ¸Ã·½·¨¼´¿É
- * 		ÒıÓÃÒ»¸ö´æÔÚµÄ·½·¨£¬´úÌælambda±í´ïÊ½ĞèÒªÍê³ÉµÄÊµÏÖ
+ * lambdaè¡¨è¾¾å¼å‡½æ•°çš„å¼•ç”¨ï¼š
+ * 		åœ¨lambdaè¡¨è¾¾å¼ä¸­ä¸å®œå‡ºç°è¾ƒä¸ºå¤æ‚çš„é€»è¾‘ï¼Œå¦‚æœæœ‰è¿™ç§æƒ…å†µï¼Œå¯ä»¥æŠŠæ–¹æ³•ä½“å•ç‹¬å†™ä¸€ä¸ªæ–¹æ³•ï¼Œlambdaè¡¨è¾¾å¼ç›´æ¥å¼•ç”¨è¯¥æ–¹æ³•å³å¯
+ * 		å¼•ç”¨ä¸€ä¸ªå­˜åœ¨çš„æ–¹æ³•ï¼Œä»£æ›¿lambdaè¡¨è¾¾å¼éœ€è¦å®Œæˆçš„å®ç°
  * 
- * ¶ÔÏó·½·¨µÄÌØÊâÒıÓÃ
+ * å¯¹è±¡æ–¹æ³•çš„ç‰¹æ®Šå¼•ç”¨
  * 		
  * 
  * 	
@@ -44,49 +44,49 @@ public class Lambda_test {
 public static void main(String[] args){
 	
 	Noparanoret noparanoret = ()->{
-		System.out.println("ÎŞ²ÎÊı£¬ÎŞ·µ»ØÖµ!");
+		System.out.println("æ— å‚æ•°ï¼Œæ— è¿”å›å€¼!");
 	};
 	noparanoret.noreply();
 	
-	//lambda±í´ïÊ½¼ò»¯Ğ´·¨£¬²ÎÊıÁĞ±íÒ²¿ÉÒÔĞ´³É(a)»òÕß(int a)
+	//lambdaè¡¨è¾¾å¼ç®€åŒ–å†™æ³•ï¼Œå‚æ•°åˆ—è¡¨ä¹Ÿå¯ä»¥å†™æˆ(a)æˆ–è€…(int a)
 	Oneparanoret oneparanoret = a->{
-		System.out.println("Ò»¸ö²ÎÊı£¬ÎŞ·µ»ØÖµ£¡²ÎÊıÎª£º"+a);
+		System.out.println("ä¸€ä¸ªå‚æ•°ï¼Œæ— è¿”å›å€¼ï¼å‚æ•°ä¸ºï¼š"+a);
 	};
 	oneparanoret.oneparanoreply(10);
 	
-	//·½·¨Ìå¼òĞ´
-	Multparanoret multparanoret = (a,b)-> System.out.println("¶à²ÎÊı£¬ÎŞ·µ»ØÖµ£¡²ÎÊıa: "+a+"²ÎÊıb: "+b);
+	//æ–¹æ³•ä½“ç®€å†™
+	Multparanoret multparanoret = (a,b)-> System.out.println("å¤šå‚æ•°ï¼Œæ— è¿”å›å€¼ï¼å‚æ•°a: "+a+"å‚æ•°b: "+b);
 	multparanoret.multparanoreply(10, 12);
 	
-	//´øreturnµÄ·½·¨Ìå¼òĞ´
+	//å¸¦returnçš„æ–¹æ³•ä½“ç®€å†™
 	Noparahasret noparahasret = ()->10;
 	int res1=noparahasret.reply();
 	System.out.println(res1);
 	
 	Oneparahasret oneparahasret = (a)->{
 		
-		System.out.println("Ò»¸ö²ÎÊı£¬ÓĞ·µ»ØÖµ£¡");
+		System.out.println("ä¸€ä¸ªå‚æ•°ï¼Œæœ‰è¿”å›å€¼ï¼");
 		return a;
 	};
 	int res2=oneparahasret.oneparareply(10);
 	System.out.println(res2);
 	
 	Multparahasret multparahasret = (a,b)->{
-		System.out.println("¶à²ÎÊı£¬ÓĞ·µ»ØÖµ");
+		System.out.println("å¤šå‚æ•°ï¼Œæœ‰è¿”å›å€¼");
 		return a+b;
 	};
 	int res3=multparahasret.multparahasret(10, 12);
 	System.out.println(res3);
 	
-	//lambda±í´ïÊ½¾²Ì¬º¯ÊıµÄÒıÓÃ
-	Caculator caculator = LambdaCall::lambda1;//µÈ¼ÛÓÚ(x,y)->LambdaCall.lambda1(x,y)
+	//lambdaè¡¨è¾¾å¼é™æ€å‡½æ•°çš„å¼•ç”¨
+	Caculator caculator = LambdaCall::lambda1;//ç­‰ä»·äº(x,y)->LambdaCall.lambda1(x,y)
 	System.out.println(caculator.caculat(10, 12));
 	
-	//ÊµÀı·½·¨µÄÒıÓÃ
+	//å®ä¾‹æ–¹æ³•çš„å¼•ç”¨
 	Caculator caculator2=new LambdaCall()::lambda2;
 	System.out.println(caculator2.caculat(22, 24));
 	
-	//lambdaµ÷ÓÃÎŞ²Î¹¹Ôì
+	//lambdaè°ƒç”¨æ— å‚æ„é€ 
 	GetPerson getperson=myPerson::new;
 	GetPerson2 getperson2=myPerson::new;
 	GetPerson3 getperson3=myPerson::new;
@@ -95,11 +95,11 @@ public static void main(String[] args){
 	getperson3.getPerson("jun", 12);
 	
 	
-	//lambda±í´ïÊ½¶ÔÏó·½·¨µÄÌØÊâµ÷ÓÃ
-	//myinter myint1=(mct)->mct.getName();ÓëÏÂÃæµÄĞ´·¨µÈ¼Û
+	//lambdaè¡¨è¾¾å¼å¯¹è±¡æ–¹æ³•çš„ç‰¹æ®Šè°ƒç”¨
+	//myinter myint1=(mct)->mct.getName();ä¸ä¸‹é¢çš„å†™æ³•ç­‰ä»·
 	myinter myint1 = myclsTest::getName;
 	
-	//myinter2 myint2= (mct,a)->mct.setName(a);ÓëÏÂÃæĞ´·¨µÈ¼Û
+	//myinter2 myint2= (mct,a)->mct.setName(a);ä¸ä¸‹é¢å†™æ³•ç­‰ä»·
 	myinter2 myint2= myclsTest::setName;
 	
 	myclsTest mct=new myclsTest();
@@ -110,7 +110,7 @@ public static void main(String[] args){
 }
 
 	
-//º¯ÊıÊ½½Ó¿Ú
+//å‡½æ•°å¼æ¥å£
 @FunctionalInterface
 interface funcint{
 	
@@ -118,44 +118,44 @@ interface funcint{
 }
 
 interface funcint2 extends funcint{
-	//ËäÈ»¸Ã½Ó¿ÚÖĞÃ»ÓĞ·½·¨£¬µ«ÊÇËü¼Ì³ĞµÄ¸¸½Ó¿ÚÖĞÓĞÒ»¸ö·½·¨£¬Ò²ÊÇĞèÒªÊµÏÖµÄ£¬ËùÒÔËüÒ²ÊôÓÚÊÇº¯ÊıÊ½½Ó¿Ú
+	//è™½ç„¶è¯¥æ¥å£ä¸­æ²¡æœ‰æ–¹æ³•ï¼Œä½†æ˜¯å®ƒç»§æ‰¿çš„çˆ¶æ¥å£ä¸­æœ‰ä¸€ä¸ªæ–¹æ³•ï¼Œä¹Ÿæ˜¯éœ€è¦å®ç°çš„ï¼Œæ‰€ä»¥å®ƒä¹Ÿå±äºæ˜¯å‡½æ•°å¼æ¥å£
 }
 
 interface funcint3{
-	//¸Ã½Ó¿ÚÖĞµÄtest2¼ÓÁËdefaultĞŞÊÎ£¬¿ÉÒÔÓĞÄ¬ÈÏµÄÊµÏÖ·½·¨Ìå£¬ÊµÏÖÀàµ±ÖĞ¿ÉÒÔÊµÏÖ¸Ã·½·¨£¬Ò²¿ÉÒÔ²»ÊµÏÖ¸Ã·½·¨
-	//ËùÒÔ±ØĞëÊµÏÖµÄ·½·¨ÓĞÇÒÖ»ÓĞÒ»¸ötest
+	//è¯¥æ¥å£ä¸­çš„test2åŠ äº†defaultä¿®é¥°ï¼Œå¯ä»¥æœ‰é»˜è®¤çš„å®ç°æ–¹æ³•ä½“ï¼Œå®ç°ç±»å½“ä¸­å¯ä»¥å®ç°è¯¥æ–¹æ³•ï¼Œä¹Ÿå¯ä»¥ä¸å®ç°è¯¥æ–¹æ³•
+	//æ‰€ä»¥å¿…é¡»å®ç°çš„æ–¹æ³•æœ‰ä¸”åªæœ‰ä¸€ä¸ªtest
 	void test();
 	default void test2(){}
 }
 
 interface funcint4{
-	//¸Ã½Ó¿ÚÖĞµÄtoString·½·¨ÊÇObjectµ±ÖĞÊµÏÖÁËµÄ·½·¨£¬ÊµÏÖÀà¿ÉÒÔ´ÓObjectµ±ÖĞ¼Ì³Ğ£¬²»ÊÇ±ØĞëÊµÏÖ
-	//ËùÒÔ¸Ã½Ó¿Úµ±ÖĞ±ØĞëÊµÏÖµÄ·½·¨ÓĞÇÒÖ»ÓĞÒ»¸ötest3
+	//è¯¥æ¥å£ä¸­çš„toStringæ–¹æ³•æ˜¯Objectå½“ä¸­å®ç°äº†çš„æ–¹æ³•ï¼Œå®ç°ç±»å¯ä»¥ä»Objectå½“ä¸­ç»§æ‰¿ï¼Œä¸æ˜¯å¿…é¡»å®ç°
+	//æ‰€ä»¥è¯¥æ¥å£å½“ä¸­å¿…é¡»å®ç°çš„æ–¹æ³•æœ‰ä¸”åªæœ‰ä¸€ä¸ªtest3
 	void test3();
 	String toString();
 }
-//ÎŞ²ÎÎŞ·µ»ØÖµµÄº¯ÊıÊ½½Ó¿Ú
+//æ— å‚æ— è¿”å›å€¼çš„å‡½æ•°å¼æ¥å£
 @FunctionalInterface
 interface Noparanoret{
 	void noreply();
 }
 
-//Ò»¸ö²ÎÊıÎŞ·µ»ØÖµµÄ½Ó¿Ú
+//ä¸€ä¸ªå‚æ•°æ— è¿”å›å€¼çš„æ¥å£
 @FunctionalInterface
 interface Oneparanoret{
 	void oneparanoreply(int a);
 }
 
-//¶à¸ö²ÎÊı£¬ÎŞ·µ»ØÖµ
+//å¤šä¸ªå‚æ•°ï¼Œæ— è¿”å›å€¼
 interface Multparanoret{
 	void multparanoreply(int a,int b);
 }
 
-//ÎŞ²ÎÊı£¬ÓĞ·µ»ØÖµ
+//æ— å‚æ•°ï¼Œæœ‰è¿”å›å€¼
 interface Noparahasret{
 	int reply();
 }
-//Ò»¸ö²ÎÊı£¬ÓĞ·µ»ØÖµ
+//ä¸€ä¸ªå‚æ•°ï¼Œæœ‰è¿”å›å€¼
 interface Oneparahasret{
 	int oneparareply(int a);
 }
@@ -191,8 +191,8 @@ interface myinter2{
 }
 
 
-//·Çº¯ÊıÊ½½Ó¿Ú
-//@FunctionalInterface---»á±¨´í
+//éå‡½æ•°å¼æ¥å£
+//@FunctionalInterface---ä¼šæŠ¥é”™
 interface unfuncint{
 	public abstract void absfunc();
 	public abstract void absfunc2();
@@ -207,7 +207,7 @@ interface unfuncint2{
 
 
 /**
- * ÓÃÓÚ´æ·Å±»µ÷ÓÃµÄ·½·¨
+ * ç”¨äºå­˜æ”¾è¢«è°ƒç”¨çš„æ–¹æ³•
  * */
 class LambdaCall{
 	
@@ -231,18 +231,18 @@ class myPerson{
 	int age;
 	
 	public myPerson(){
-		System.out.println("ÎŞ²Î¹¹Ôì");
+		System.out.println("æ— å‚æ„é€ ");
 	}
 	
 	public myPerson(String name){
 		this.name=name;
-		System.out.println("Ò»²Î¹¹Ôì"+name);
+		System.out.println("ä¸€å‚æ„é€ "+name);
 	}
 	
 	public myPerson(String name,int age){
 		this.name=name;
 		this.age=age;
-		System.out.println("¶à²Î¹¹Ôì"+name+","+age);
+		System.out.println("å¤šå‚æ„é€ "+name+","+age);
 		
 	}
 }

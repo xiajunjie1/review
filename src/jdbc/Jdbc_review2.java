@@ -9,13 +9,13 @@ import java.util.Arrays;
 
 import data.bean.Account;
 
-/*������
- * ÿһ�ε�SQL����������ռ�����ݿ����Դ������insert�����������N�������ȴ洢����������Ȼ����һ��
- * ��ˢ�����ݿ��У����������������ݿ�Ľ�����������˿����ṩЧ��
+/*批处理
+ * 每一次的SQL操作，都会占用数据库的资源，比如insert操作。如果将N条操作先存储到缓冲区，然后再一次
+ * 性刷到数据库中，这样减少了与数据库的交互次数，因此可以提供效率
  * 
- * Statement�е�����������
- * 	addBatch(sql):��SQL������ӵ�������ȥ
- * 	executeBatch():�������е�SQLһ����ˢ�����ݿ���ȡ
+ * Statement中的批处理方法
+ * 	addBatch(sql):将SQL语句添加到缓存中去
+ * 	executeBatch():将缓存中的SQL一次性刷到数据库中取
  * 
  * */
 public class Jdbc_review2 {
@@ -23,15 +23,15 @@ public class Jdbc_review2 {
 	public static void main(String[] args){
 		//BatchExe();
 		if(checkUser("jun","007==008")){
-			System.out.println("��½�ɹ���");
+			System.out.println("登陆成功！");
 		}
 		else{
-			System.out.println("��֤ʧ�ܣ�");
+			System.out.println("验证失败！");
 		}
 	}
 
 /**
- * ���������ݿ⵱�в���100�����ݣ���ÿ20�����ݣ�ִ��һ������������SQLˢ�����ݿ⵱��
+ * 需求：向数据库当中插入100条数据，且每20条数据，执行一次批处理，将SQL刷到数据库当中
  * */
 private static void BatchExe(){
 	Connection conn=DB_Util.getConn();
@@ -54,13 +54,13 @@ private static void BatchExe(){
 	}
 }
 /**
- * ����PreparedStatement���Statement������Ԥ���봦��������ֹSQLע�밲ȫ����
- * 	�����Ϳ���ȷ��SQL���Ľṹ���޷�ͨ��������ʽ����������
- * 	�����ͻ�����ͨ��ռλ��������ǰռλ��ȷ�����ṹ
- * 	ǿ��֮����1����ֹSQLע��  2����ߴ���ɶ���  3�����Ч��
- * ԭ����
- * 	Ԥ������󣬻��Ȱ�sqlģ�巢�͸����ݿ⣬���ݿ����У���﷨����ȷ�ԣ��ٽ��б��룬ȷ���﷨�ṹ��
- * 	DBMSִ��ʱֻ��Ҫ�Ѳ���ֵ�չ������ѡ�������ִ�У�����У��ͱ��룬ֱ��ִ�С�
+ * 利用PreparedStatement替代Statement，进行预编译处理用来防止SQL注入安全隐患
+ * 	此类型可以确定SQL语句的结构，无法通过其他方式来增减条件
+ * 	此类型还可以通过占位符？来提前占位，确定语句结构
+ * 	强大之处：1、防止SQL注入  2、提高代码可读性  3、提高效率
+ * 原理：
+ * 	预编译对象，会先把sql模板发送给数据库，数据库进行校验语法的正确性，再进行编译，确定语法结构。
+ * 	DBMS执行时只需要把参数值收过来而已。若二次执行，不用校验和编译，直接执行。
  * 
  * */
 @SuppressWarnings("finally")

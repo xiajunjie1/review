@@ -4,11 +4,11 @@ import java.util.Arrays;
 import java.util.stream.*;
 import java.util.*;
 /*
- * Collectors¹¤¾ßÀà
- * 	ÀïÃæ·â×°ÁËºÜ¶à·½·¨£¬¿ÉÒÔ·½±ãµÄ»ñÈ¡µ½Ò»¸öCollector½Ó¿Ú¶ÔÏó£¬´Ó¶ø¿ÉÒÔÊ¹ÓÃcollect·½·¨£¬¶ÔÁ÷ÖĞµÄÊı¾İ½øĞĞ
- * 	¸÷Ê½¸÷ÑùµÄ´¦Àí¡¢ÕûºÏ
+ * Collectorså·¥å…·ç±»
+ * 	é‡Œé¢å°è£…äº†å¾ˆå¤šæ–¹æ³•ï¼Œå¯ä»¥æ–¹ä¾¿çš„è·å–åˆ°ä¸€ä¸ªCollectoræ¥å£å¯¹è±¡ï¼Œä»è€Œå¯ä»¥ä½¿ç”¨collectæ–¹æ³•ï¼Œå¯¹æµä¸­çš„æ•°æ®è¿›è¡Œ
+ * 	å„å¼å„æ ·çš„å¤„ç†ã€æ•´åˆ
  * 
- * ¸Ã¹¤¾ßÀàµÄ·½·¨Ö÷ÒªÊÇÍ¬Stream.collect()·½·¨»ìÓÃ
+ * è¯¥å·¥å…·ç±»çš„æ–¹æ³•ä¸»è¦æ˜¯åŒStream.collect()æ–¹æ³•æ··ç”¨
  * */
 public class Stream_test3 {
 	public static void main(String[] args){
@@ -22,11 +22,11 @@ public class Stream_test3 {
 		//stream.collect(Collectors.toSet());
 		//Map<String,String> map=stream.collect(Collectors.toMap(e1->e1, e1->e1));
 		//map.forEach((k,v)->System.out.println("key: "+k+" value: "+v));
-		//String result=stream.collect(Collectors.joining());//½«Á÷ÖĞµÄStringÔªËØ¶¼Á¬½ÓÆğÀ´
+		//String result=stream.collect(Collectors.joining());//å°†æµä¸­çš„Stringå…ƒç´ éƒ½è¿æ¥èµ·æ¥
 		//System.out.println(result);
-		//String result2=stream.collect(Collectors.joining(","));//½«Á÷ÖĞµÄStringÔªËØ¶¼Á¬½ÓÆğÀ´£¬²¢ÓÃ£¬·Ö¸ô
+		//String result2=stream.collect(Collectors.joining(","));//å°†æµä¸­çš„Stringå…ƒç´ éƒ½è¿æ¥èµ·æ¥ï¼Œå¹¶ç”¨ï¼Œåˆ†éš”
 		//System.out.println(result2);
-		String result3=stream.collect(Collectors.joining(",", "[", "]"));//½«Á÷ÖĞµÄStringÔªËØÁ¬½ÓÆğÀ´£¬²¢Ìí¼ÓÇ°ÖÃ×Ö·ûºÍºóÖÃ×Ö·û
+		String result3=stream.collect(Collectors.joining(",", "[", "]"));//å°†æµä¸­çš„Stringå…ƒç´ è¿æ¥èµ·æ¥ï¼Œå¹¶æ·»åŠ å‰ç½®å­—ç¬¦å’Œåç½®å­—ç¬¦
 		System.out.println(result3);
 		
 	}

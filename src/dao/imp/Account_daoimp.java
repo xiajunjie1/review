@@ -16,7 +16,7 @@ public class Account_daoimp implements Db_dao {
 	@Override
 	public void add(Account ac) throws SQLException{
 			if(ac==null){
-				System.out.println("²ÎÊı²»ºÏ·¨£¡");
+				System.out.println("å‚æ•°ä¸åˆæ³•ï¼");
 				return;
 			}
 			Connection conn=DruidConnctionPool.getConn();
@@ -27,7 +27,7 @@ public class Account_daoimp implements Db_dao {
 			pstat.setString(3, ac.getPassword());
 			pstat.setDouble(4, ac.getMoney());
 			int result=pstat.executeUpdate();
-			System.out.println("Ó°ÏìĞĞÊı£º"+result);
+			System.out.println("å½±å“è¡Œæ•°ï¼š"+result);
 			DruidConnctionPool.close(null, pstat, conn);
 
 	}
@@ -39,7 +39,7 @@ public class Account_daoimp implements Db_dao {
 		PreparedStatement pstat=conn.prepareStatement(sql);
 		pstat.setInt(1, account_id);
 		int result=pstat.executeUpdate();
-		System.out.println("Ó°ÏìĞĞÊı£º"+result);
+		System.out.println("å½±å“è¡Œæ•°ï¼š"+result);
 		DruidConnctionPool.close(null, pstat, conn);
 
 	}

@@ -4,24 +4,24 @@ import java.util.function.BinaryOperator;
 import java.util.stream.*;
 
 /*
- * ¼¯ºÏµÄÁ÷Ê½±à³Ì
- * 	JDK1.8µÄĞÂÌØĞÔ
- * 	StreamÊÇ²Ù×÷¼¯ºÏµÄÔöÇ¿£¬Á÷²»ÊÇ¼¯ºÏµÄÔªËØ£¬²»ÊÇÒ»ÖÖÊı¾İ½á¹¹£¬²»¸ºÔğÊı¾İµÄ´æ´¢µÄ¡£
- * 	Á÷¸üÏñÒ»¸öµü´úÆ÷£¬¿ÉÒÔµ¥Ïò±éÀú¼¯ºÏÖĞµÄÃ¿Ò»¸öÔªËØ£¬²¢ÇÒ²»¿ÉÑ­»·
+ * é›†åˆçš„æµå¼ç¼–ç¨‹
+ * 	JDK1.8çš„æ–°ç‰¹æ€§
+ * 	Streamæ˜¯æ“ä½œé›†åˆçš„å¢å¼ºï¼Œæµä¸æ˜¯é›†åˆçš„å…ƒç´ ï¼Œä¸æ˜¯ä¸€ç§æ•°æ®ç»“æ„ï¼Œä¸è´Ÿè´£æ•°æ®çš„å­˜å‚¨çš„ã€‚
+ * 	æµæ›´åƒä¸€ä¸ªè¿­ä»£å™¨ï¼Œå¯ä»¥å•å‘éå†é›†åˆä¸­çš„æ¯ä¸€ä¸ªå…ƒç´ ï¼Œå¹¶ä¸”ä¸å¯å¾ªç¯
  * 
- * 	Á÷¿ÉÒÔ½«Êı¾İÔ´£¨¼¯ºÏ¡¢Êı×é...)ÖĞµÄÊı¾İ¶Áµ½ÁËStreamÖĞ£¬ÔÚ¶ÔÁ÷ÖĞµÄÊı¾İ½øĞĞÒ»Ğ©ÆäËûµÄ´¦Àí
- * 	´¦ÀíµÄ½á¹û£¬ÒÀÈ»ÊÇÒ»¸öÁ÷
+ * 	æµå¯ä»¥å°†æ•°æ®æºï¼ˆé›†åˆã€æ•°ç»„...)ä¸­çš„æ•°æ®è¯»åˆ°äº†Streamä¸­ï¼Œåœ¨å¯¹æµä¸­çš„æ•°æ®è¿›è¡Œä¸€äº›å…¶ä»–çš„å¤„ç†
+ * 	å¤„ç†çš„ç»“æœï¼Œä¾ç„¶æ˜¯ä¸€ä¸ªæµ
  * 
- * 	Ê¹ÓÃÁ÷Ê½±ä³ÉµÄ²½Öè
- * 		1¡¢»ñÈ¡Êı¾İÔ´£¬½«Êı¾İÔ´ÖĞµÄÊı¾İ¶Áµ½Á÷ÖĞ
- * 		2¡¢¶ÔÁ÷ÖĞµÄÊı¾İ½øĞĞ¸÷Ê½¸÷ÑùµÄ´¦Àí
- * 		3¡¢¶ÔÁ÷ÖĞµÄÊı¾İ½øĞĞÕûºÏ´¦Àí
+ * 	ä½¿ç”¨æµå¼å˜æˆçš„æ­¥éª¤
+ * 		1ã€è·å–æ•°æ®æºï¼Œå°†æ•°æ®æºä¸­çš„æ•°æ®è¯»åˆ°æµä¸­
+ * 		2ã€å¯¹æµä¸­çš„æ•°æ®è¿›è¡Œå„å¼å„æ ·çš„å¤„ç†
+ * 		3ã€å¯¹æµä¸­çš„æ•°æ®è¿›è¡Œæ•´åˆå¤„ç†
  * 
- * 	×îÖÕ²Ù×÷
- * 		Í¨¹ı×îÖÕ²Ù×÷£¬¿ÉÒÔ´ÓÁ÷ÖĞÌáÈ¡³öÀ´ÎÒÃÇÏëÒªµÄĞÅÏ¢
- * 		×îÖÕ²Ù×÷ Ö´ĞĞ½áÊøºó£¬»á×Ô¶¯¹Ø±ÕÕâ¸öÁ÷£¬Á÷ÖĞµÄÊı¾İ¶¼»áÏú»Ù
+ * 	æœ€ç»ˆæ“ä½œ
+ * 		é€šè¿‡æœ€ç»ˆæ“ä½œï¼Œå¯ä»¥ä»æµä¸­æå–å‡ºæ¥æˆ‘ä»¬æƒ³è¦çš„ä¿¡æ¯
+ * 		æœ€ç»ˆæ“ä½œ æ‰§è¡Œç»“æŸåï¼Œä¼šè‡ªåŠ¨å…³é—­è¿™ä¸ªæµï¼Œæµä¸­çš„æ•°æ®éƒ½ä¼šé”€æ¯
  * 		collect
- * 			½«Á÷ÖĞµÄÊı¾İ´æµ½Ò»¸ö¼¯ºÏÀï
+ * 			å°†æµä¸­çš„æ•°æ®å­˜åˆ°ä¸€ä¸ªé›†åˆé‡Œ
  * 
  * 		reduce
  * 		count
@@ -43,33 +43,33 @@ public class Stream_test {
 	
 	
 	/**
-	 * ¼¯ºÏÊı¾İÔ´¶ÁÈ¡£¬»ñÈ¡Ò»¸öÁ÷
+	 * é›†åˆæ•°æ®æºè¯»å–ï¼Œè·å–ä¸€ä¸ªæµ
 	 * */
 	private static void getStreamColl(){
-		//¶ÁÈ¡¼¯ºÏµÄÊı¾İµ½Á÷ÖĞ
+		//è¯»å–é›†åˆçš„æ•°æ®åˆ°æµä¸­
 		List<Integer> list=new ArrayList<>();
 		Collections.addAll(list, 0,1,2,3,4,5,6,7,8,9);
-		//Í¨¹ı¼¯ºÏ×Ô´øµÄ·½·¨»ñÈ¡Á÷----Í¬²½Á÷
+		//é€šè¿‡é›†åˆè‡ªå¸¦çš„æ–¹æ³•è·å–æµ----åŒæ­¥æµ
 		Stream<Integer> stream=list.stream();
 		System.out.println(stream);
-		//Í¨¹ı¼¯ºÏ×Ô´øµÄ·½·¨»ñÈ¡Á÷----²¢·¢Á÷
+		//é€šè¿‡é›†åˆè‡ªå¸¦çš„æ–¹æ³•è·å–æµ----å¹¶å‘æµ
 		Stream<Integer> stream2=list.parallelStream();
 		System.out.println(stream2);
-		//Ê¹ÓÃ²¢·¢Á÷Ğ§ÂÊÒª¸ü¸ßÒ»Ğ©
+		//ä½¿ç”¨å¹¶å‘æµæ•ˆç‡è¦æ›´é«˜ä¸€äº›
 		
 	}
 	
 	
 	/**
-	 * Êı×éÊı¾İÔ´¶ÁÈ¡£¬»ñÈ¡Ò»¸öÁ÷
+	 * æ•°ç»„æ•°æ®æºè¯»å–ï¼Œè·å–ä¸€ä¸ªæµ
 	 * */
 	private static void getStreamArr(){
 		Integer[] intarrys={1,2,3,4,5,6,7,8,9};
-		//¶ÁÈ¡Êı×éÖĞµÄÊı¾İ»ñÈ¡Ò»¸öÁ÷
+		//è¯»å–æ•°ç»„ä¸­çš„æ•°æ®è·å–ä¸€ä¸ªæµ
 		Stream<Integer> stream=Arrays.stream(intarrys);
 		System.out.println(stream);
 		
-		//»ù±¾ÀàĞÍµÄÊı×é
+		//åŸºæœ¬ç±»å‹çš„æ•°ç»„
 		int[] arrys={11,12,13,14,15,16,17,18,19};
 		IntStream intstream=Arrays.stream(arrys);
 		System.out.println(intstream);
@@ -77,16 +77,16 @@ public class Stream_test {
 	
 	
 	/**
-	 * ×îÖÕ²Ù×÷-collect
-	 * 	¾ÛºÏ
+	 * æœ€ç»ˆæ“ä½œ-collect
+	 * 	èšåˆ
 	 * */
 	private static void finalOpration(){
-		//»ñÈ¡Êı¾İÔ´
+		//è·å–æ•°æ®æº
 		List<Integer> list=new ArrayList<Integer>();
 		Collections.addAll(list, 1,2,3,4,5);
 		Stream<Integer> stream=list.stream();
 		
-		//µ÷ÓÃÁ÷µÄcollect·½·¨£¬½«Á÷ÖĞµÄÊı¾İ´æÈëµ½ÏàÓ¦µÄ¼¯ºÏµ±ÖĞ
+		//è°ƒç”¨æµçš„collectæ–¹æ³•ï¼Œå°†æµä¸­çš„æ•°æ®å­˜å…¥åˆ°ç›¸åº”çš„é›†åˆå½“ä¸­
 		//List<Integer> intlist=stream.collect(Collectors.toList());
 		//System.out.println(intlist);
 		//Set<Integer> intset=stream.collect(Collectors.toSet());
@@ -95,15 +95,15 @@ public class Stream_test {
 		Map<String,Integer> map=stream.collect(Collectors.toMap(i->i.toString(), i->i));
 		System.out.println(map);
 		
-		//Èç¹ûÉÏÃæ½«Á÷´æÈë¼¯ºÏµ±ÖĞµÄ´úÂëÃ»ÓĞ×¢µô£¬ÄÇÃ´»áÅ×³öÒì³££ºstream has already been operated upon or closed
-		//×îÖÕ²Ù×÷Íê³Éºó»á¹Ø±ÕÁ÷£¬µ÷ÓÃ¹Ø±ÕµÄÁ÷»áÅ×³öÒì³£
+		//å¦‚æœä¸Šé¢å°†æµå­˜å…¥é›†åˆå½“ä¸­çš„ä»£ç æ²¡æœ‰æ³¨æ‰ï¼Œé‚£ä¹ˆä¼šæŠ›å‡ºå¼‚å¸¸ï¼šstream has already been operated upon or closed
+		//æœ€ç»ˆæ“ä½œå®Œæˆåä¼šå…³é—­æµï¼Œè°ƒç”¨å…³é—­çš„æµä¼šæŠ›å‡ºå¼‚å¸¸
 		
 		
 	} 
 	
 	
 	/**
-	 * ×îÖÕ²Ù×÷--reduce£¬½«Á÷ÖĞµÄÊı¾İ°´ÕÕÒ»¶¨µÄ¹æÔò¾ÛºÏÆğÀ´
+	 * æœ€ç»ˆæ“ä½œ--reduceï¼Œå°†æµä¸­çš„æ•°æ®æŒ‰ç…§ä¸€å®šçš„è§„åˆ™èšåˆèµ·æ¥
 	 * */
 	private static void finalOpration2(){
 		List<Integer> intlist=new ArrayList<>();
@@ -111,14 +111,14 @@ public class Stream_test {
 		Stream<Integer> stream=intlist.stream();
 		
 		
-		//reduceµÄ²ÎÊıÊÇÒ»¸öBinaryOperator<T>½Ó¿Ú£¬¸Ã½Ó¿ÚÊÇÒ»¸öº¯ÊıÊ½½Ó¿Ú
-		//BinaryOperator½Ó¿Ú£¬¼Ì³Ğ×ÔBiFunction<T, U, R>½Ó¿Ú£¬Ëü±ØĞëÊµÏÖµÄ·½·¨ÊÇR apply(T t, U u);
+		//reduceçš„å‚æ•°æ˜¯ä¸€ä¸ªBinaryOperator<T>æ¥å£ï¼Œè¯¥æ¥å£æ˜¯ä¸€ä¸ªå‡½æ•°å¼æ¥å£
+		//BinaryOperatoræ¥å£ï¼Œç»§æ‰¿è‡ªBiFunction<T, U, R>æ¥å£ï¼Œå®ƒå¿…é¡»å®ç°çš„æ–¹æ³•æ˜¯R apply(T t, U u);
 		Optional<Integer> optional=stream.reduce((p1,p2)->{
 			System.out.println("Test!");
 			return p1+p2;});
-		//reduce·½·¨£¬»á´ÓµÚÒ»¸öÔªËØ¿ªÊ¼£¬±éÀúÁ÷£¬p1ÎªµÚÒ»¸öÔªËØ£¬p2ÎªºóÒ»¸öÔªËØ
-		//È»ºó£¬reduce»áÔÚ±éÀúµÄ¹ı³Ìµ±ÖĞ£¬µ÷ÓÃ´«ÈëµÄº¯Êı½Ó¿ÚµÄµ±ÖĞÊµÏÖµÄ·½·¨£¬µÃµ½¸Ã·½·¨µÄ·µ»ØÖµ£¬Áîp1µÈÓÚ¸ÃÖµ£¬p2ÎªÏÂÒ»¸öÔªËØ£¬¼ÌĞøµ÷ÓÃ¸Ãº¯ÊıÊ½½Ó¿ÚÖĞµÄÊµÏÖ·½·¨
-		//Ö±µ½±éÀúµ½µ¹ÊıµÚ¶ş¸öÔªËØ£¬×îºóÒ»´Îµ÷ÓÃ¸Ã·½·¨£¬ÔÚ½«¸Ã·½·¨µÄ·µ»ØÖµ×÷Îª½á¹û¡£
+		//reduceæ–¹æ³•ï¼Œä¼šä»ç¬¬ä¸€ä¸ªå…ƒç´ å¼€å§‹ï¼Œéå†æµï¼Œp1ä¸ºç¬¬ä¸€ä¸ªå…ƒç´ ï¼Œp2ä¸ºåä¸€ä¸ªå…ƒç´ 
+		//ç„¶åï¼Œreduceä¼šåœ¨éå†çš„è¿‡ç¨‹å½“ä¸­ï¼Œè°ƒç”¨ä¼ å…¥çš„å‡½æ•°æ¥å£çš„å½“ä¸­å®ç°çš„æ–¹æ³•ï¼Œå¾—åˆ°è¯¥æ–¹æ³•çš„è¿”å›å€¼ï¼Œä»¤p1ç­‰äºè¯¥å€¼ï¼Œp2ä¸ºä¸‹ä¸€ä¸ªå…ƒç´ ï¼Œç»§ç»­è°ƒç”¨è¯¥å‡½æ•°å¼æ¥å£ä¸­çš„å®ç°æ–¹æ³•
+		//ç›´åˆ°éå†åˆ°å€’æ•°ç¬¬äºŒä¸ªå…ƒç´ ï¼Œæœ€åä¸€æ¬¡è°ƒç”¨è¯¥æ–¹æ³•ï¼Œåœ¨å°†è¯¥æ–¹æ³•çš„è¿”å›å€¼ä½œä¸ºç»“æœã€‚
 		
 		Integer res=optional.get();
 		System.out.println(res);
@@ -126,9 +126,9 @@ public class Stream_test {
 	}
 	
 	
-	/**×îÖÕ²Ù×÷.
-	 * count---Í³¼ÆÁ÷ÖĞµÄÊı¾İµÄÊıÁ¿
-	 * forEach---±éÀúÁ÷ÖĞµÄÊı¾İ
+	/**æœ€ç»ˆæ“ä½œ.
+	 * count---ç»Ÿè®¡æµä¸­çš„æ•°æ®çš„æ•°é‡
+	 * forEach---éå†æµä¸­çš„æ•°æ®
 	 * 
 	 * */
 	private static void finalOpration3(){
@@ -138,23 +138,23 @@ public class Stream_test {
 		System.out.println(stream.count());
 		
 		Stream<Integer> stream2=intlist.stream();
-		//forEachµÄ²ÎÊıÊÇÒ»¸öº¯ÊıÊ½½Ó¿Ú£¬±ØĞëÊµÏÖµÄ·½·¨ÎªÒ»¸ö²ÎÊı£¬ÎŞ·µ»ØÖµµÄ·½·¨
-		stream2.forEach(e1->System.out.println(e1));//¿ÉÒÔĞ´³ÉSystem::println
+		//forEachçš„å‚æ•°æ˜¯ä¸€ä¸ªå‡½æ•°å¼æ¥å£ï¼Œå¿…é¡»å®ç°çš„æ–¹æ³•ä¸ºä¸€ä¸ªå‚æ•°ï¼Œæ— è¿”å›å€¼çš„æ–¹æ³•
+		stream2.forEach(e1->System.out.println(e1));//å¯ä»¥å†™æˆSystem::println
 	}
 	
 	
 	/**
-	 * ×îÖÕ²Ù×÷
-	 * 	max----°´ÕÕÖ¸¶¨µÄ¶ÔÏó±È½Ï¹æÔò£¬ÕÒ³öÁ÷ÖĞ×î´óµÄÔªËØ
-	 * 	min----°´ÕÕÖ¸¶¨µÄ¶ÔÏó±È½Ï¹æÔò£¬ÕÒ³öÁ÷ÖĞ×îĞ¡µÄÔªËØ
+	 * æœ€ç»ˆæ“ä½œ
+	 * 	max----æŒ‰ç…§æŒ‡å®šçš„å¯¹è±¡æ¯”è¾ƒè§„åˆ™ï¼Œæ‰¾å‡ºæµä¸­æœ€å¤§çš„å…ƒç´ 
+	 * 	min----æŒ‰ç…§æŒ‡å®šçš„å¯¹è±¡æ¯”è¾ƒè§„åˆ™ï¼Œæ‰¾å‡ºæµä¸­æœ€å°çš„å…ƒç´ 
 	 * 
 	 * */
 	private static void finalOpration4(){
 		List<Integer> intlist=new ArrayList<>();
 		Collections.addAll(intlist, 1,2,3,4,5);
 		Stream<Integer> stream=intlist.stream();
-		System.out.println(stream.max((e1,e2) -> e1-e2).get());//Optional¶ÔÏó£¬ÓÃget»ñµÃ½á¹û
-		//Integer¶ÔÏóÖ±½ÓÊµÏÖÁËcompareto·½·¨£¬ËùÒÔ¿ÉÒÔÖ±½ÓÒıÓÃInteger¶ÔÏóµÄcompareTo·½·¨£¬ËùÒÔlambda±í´ïÊ½Ò²ÄÜÖ±½ÓĞ´³ÉInteger::compareTo
+		System.out.println(stream.max((e1,e2) -> e1-e2).get());//Optionalå¯¹è±¡ï¼Œç”¨getè·å¾—ç»“æœ
+		//Integerå¯¹è±¡ç›´æ¥å®ç°äº†comparetoæ–¹æ³•ï¼Œæ‰€ä»¥å¯ä»¥ç›´æ¥å¼•ç”¨Integerå¯¹è±¡çš„compareToæ–¹æ³•ï¼Œæ‰€ä»¥lambdaè¡¨è¾¾å¼ä¹Ÿèƒ½ç›´æ¥å†™æˆInteger::compareTo
 		
 		Stream<Integer> stream2=intlist.stream();
 		System.out.println(stream2.min(Integer::compareTo).get());
@@ -165,17 +165,17 @@ public class Stream_test {
 	
 	
 	/**
-	 * ×îÖÕ²Ù×÷£ºMatching
-	 * 	allMatch£ºÖ»ÓĞµ±Á÷ÖĞËùÓĞµÄÔªËØ¶¼Æ¥ÅäÖ¸¶¨µÄ¹æÔò£¬²Å·µ»Øtrue
-	 * 	anyMatch£ºÖ»ÒªÁ÷ÖĞÈÎÒâÊı¾İÂú×ãÆ¥ÅäÖ¸¶¨µÄ¹æÔò£¬¾Í·µ»Øtrue
-	 * 	noneMatch£ºÖ»ÓĞµ±Á÷ÖĞËùÓĞµÄÊı¾İ¶¼²»Âú×ãÆ¥ÅäÖ¸¶¨µÄ¹æÔò£¬²Å·µ»Øtrue
+	 * æœ€ç»ˆæ“ä½œï¼šMatching
+	 * 	allMatchï¼šåªæœ‰å½“æµä¸­æ‰€æœ‰çš„å…ƒç´ éƒ½åŒ¹é…æŒ‡å®šçš„è§„åˆ™ï¼Œæ‰è¿”å›true
+	 * 	anyMatchï¼šåªè¦æµä¸­ä»»æ„æ•°æ®æ»¡è¶³åŒ¹é…æŒ‡å®šçš„è§„åˆ™ï¼Œå°±è¿”å›true
+	 * 	noneMatchï¼šåªæœ‰å½“æµä¸­æ‰€æœ‰çš„æ•°æ®éƒ½ä¸æ»¡è¶³åŒ¹é…æŒ‡å®šçš„è§„åˆ™ï¼Œæ‰è¿”å›true
 	 * 
 	 * */
 	private static void finalOpration5(){
 		List<Integer> intlist=new ArrayList<>();
 		Collections.addAll(intlist, 1,2,3,4,5);
 		Stream<Integer> stream=intlist.stream();
-		boolean res1=stream.allMatch(e1->e1>1);//¸Ã·½·¨ÖĞµÄ²ÎÊıÊÇÒ»¸öº¯ÊıÊ½½Ó¿ÚPredicate£¬±ØĞëÊµÏÖµÄ·½·¨Îªboolean test(T t)
+		boolean res1=stream.allMatch(e1->e1>1);//è¯¥æ–¹æ³•ä¸­çš„å‚æ•°æ˜¯ä¸€ä¸ªå‡½æ•°å¼æ¥å£Predicateï¼Œå¿…é¡»å®ç°çš„æ–¹æ³•ä¸ºboolean test(T t)
 		System.out.println(res1);//false
 		
 		Stream<Integer> stream2=intlist.stream();
@@ -190,10 +190,10 @@ public class Stream_test {
 	
 	
 	/**
-	 * ×îÖÕ²Ù×÷£ºfind
-	 * 	findFirst£º´ÓÁ÷ÖĞ»ñÈ¡Ò»¸öÔªËØ£¨»ñÈ¡µÄ¿ªÍ·ÔªËØ£©
-	 * 	findAny£º´ÓÁ÷ÖĞ»ñÈ¡Ò»¸öÔªËØ£¨Ò»°ãÇé¿öÏÂÊÇ»ñÈ¡µÄ¿ªÍ·ÔªËØ£©,ÔÚ²¢ĞĞÁ÷ÖĞ¿ÉÄÜ²»ÊÇÊ×ÔªËØ£¬´®ĞĞÁ÷µ±ÖĞÒ»¶¨ÊÇÊ×ÔªËØ
-	 * ÕâÁ½¸ö·½·¨¾ø´ó²¿·ÖÇé¿öÏÂÊÇÏàÍ¬µÄ£¬µ«ÊÇÔÚ¶àÏß³ÌµÄ»·¾³ÏÂ£¬ÕâÁ½¸ö·½·¨µÄ½á¹ûÓĞ¿ÉÄÜ²»Ò»Ñù
+	 * æœ€ç»ˆæ“ä½œï¼šfind
+	 * 	findFirstï¼šä»æµä¸­è·å–ä¸€ä¸ªå…ƒç´ ï¼ˆè·å–çš„å¼€å¤´å…ƒç´ ï¼‰
+	 * 	findAnyï¼šä»æµä¸­è·å–ä¸€ä¸ªå…ƒç´ ï¼ˆä¸€èˆ¬æƒ…å†µä¸‹æ˜¯è·å–çš„å¼€å¤´å…ƒç´ ï¼‰,åœ¨å¹¶è¡Œæµä¸­å¯èƒ½ä¸æ˜¯é¦–å…ƒç´ ï¼Œä¸²è¡Œæµå½“ä¸­ä¸€å®šæ˜¯é¦–å…ƒç´ 
+	 * è¿™ä¸¤ä¸ªæ–¹æ³•ç»å¤§éƒ¨åˆ†æƒ…å†µä¸‹æ˜¯ç›¸åŒçš„ï¼Œä½†æ˜¯åœ¨å¤šçº¿ç¨‹çš„ç¯å¢ƒä¸‹ï¼Œè¿™ä¸¤ä¸ªæ–¹æ³•çš„ç»“æœæœ‰å¯èƒ½ä¸ä¸€æ ·
 	 * 	
 	 * */
 	
@@ -209,11 +209,11 @@ public class Stream_test {
 	}
 	
 	/**
-	 * IntStreamµÄ×îÖÕ´¦Àí
+	 * IntStreamçš„æœ€ç»ˆå¤„ç†
 	 * */
 	private static void IntStreamfinalOpration(){
 		int[] intarry={1,2,3,4,5,6};
-		//»ñÈ¡IntStream¶ÔÏó
+		//è·å–IntStreamå¯¹è±¡
 		IntStream intstream=Arrays.stream(intarry);
 		/*
 		IntStream intstream2=Arrays.stream(intarry);
@@ -222,15 +222,15 @@ public class Stream_test {
 		IntStream intstream5=Arrays.stream(intarry);
 		
 		
-		System.out.println(intstream.max().getAsInt());//»ñÈ¡×î´óÖµ
-		System.out.println(intstream2.min().getAsInt());//»ñÈ¡×îĞ¡Öµ
-		System.out.println(intstream3.sum());//»ñÈ¡ÇóºÍ
-		System.out.println(intstream4.count());//»ñÈ¡Á÷ÖĞÔªËØµÄ¸öÊı
-		System.out.println(intstream5.average().getAsDouble());//»ñÈ¡Æ½¾ùÖµ
+		System.out.println(intstream.max().getAsInt());//è·å–æœ€å¤§å€¼
+		System.out.println(intstream2.min().getAsInt());//è·å–æœ€å°å€¼
+		System.out.println(intstream3.sum());//è·å–æ±‚å’Œ
+		System.out.println(intstream4.count());//è·å–æµä¸­å…ƒç´ çš„ä¸ªæ•°
+		System.out.println(intstream5.average().getAsDouble());//è·å–å¹³å‡å€¼
 		*/
 		
-		//ÀûÓÃÒ»¸öintÁ÷»ñÈ¡µ½ÒÔÉÏ¶à¸öÊı¾İ
-		//»ñÈ¡Á÷µÄÒ»¸öÊı¾İ·ÖÎö
+		//åˆ©ç”¨ä¸€ä¸ªintæµè·å–åˆ°ä»¥ä¸Šå¤šä¸ªæ•°æ®
+		//è·å–æµçš„ä¸€ä¸ªæ•°æ®åˆ†æ
 		IntSummaryStatistics iss=intstream.summaryStatistics();
 		System.out.println(iss.getMax());
 		System.out.println(iss.getMin());

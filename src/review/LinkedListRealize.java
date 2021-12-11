@@ -1,13 +1,13 @@
 package review;
 /*
- * ÊµÏÖÀàËÆLinkedListµÄ¼¯ºÏ¹¤¾ßÀà
+ * å®ç°ç±»ä¼¼LinkedListçš„é›†åˆå·¥å…·ç±»
  * */
 public class LinkedListRealize<E> {
 	
 	private class Node {
 		E value;
-		Node pre;//Ç°½Úµã
-		Node next;//ºó½Úµã
+		Node pre;//å‰èŠ‚ç‚¹
+		Node next;//åèŠ‚ç‚¹
 	}
 	
 	private Node head;
@@ -50,7 +50,7 @@ public class LinkedListRealize<E> {
 	
 	public void add(int index,E value){
 		if(index<0 || index >this.count){
-			System.out.println("ÏÂ±ê²»ºÏ·¨");
+			System.out.println("ä¸‹æ ‡ä¸åˆæ³•");
 			return;
 		}
 		Node newEle=new Node();
@@ -101,7 +101,7 @@ public class LinkedListRealize<E> {
 	public int remove(E ele){
 		int i=-1;
 		if(this.count==0){
-			System.out.println("¿ÕÁĞ±í");
+			System.out.println("ç©ºåˆ—è¡¨");
 		
 		}
 		Node temp=this.head;
@@ -120,7 +120,7 @@ public class LinkedListRealize<E> {
 	public E remove(int index){
 		E target;
 		if(index<0 || index>=count){
-			System.out.println("ÏÂ±ê²»ºÏ·¨£¡");
+			System.out.println("ä¸‹æ ‡ä¸åˆæ³•ï¼");
 			return null;
 		}
 		Node temp=this.head;
@@ -136,7 +136,7 @@ public class LinkedListRealize<E> {
 	
 	public void set(int index,E ele){
 		if(index<0 || index>=count){
-			System.out.println("ÏÂ±ê²»ºÏ·¨£¡");
+			System.out.println("ä¸‹æ ‡ä¸åˆæ³•ï¼");
 			return;
 		}
 		Node temp=this.head;

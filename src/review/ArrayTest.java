@@ -4,10 +4,10 @@ public class ArrayTest {
 	
 	public static void main(String[] args){
 		
-		//Êı×éµÄ±éÀú
-		//ÔöÇ¿forÑ­»·
-		//Ë¼Ïë£º
-		//ÔöÇ¿forÑ­»·µÄĞ§ÂÊ±ÈÏÂ±ê±éÀúµÄ·½Ê½Ğ§ÂÊ¸ü¸ß
+		//æ•°ç»„çš„éå†
+		//å¢å¼ºforå¾ªç¯
+		//æ€æƒ³ï¼š
+		//å¢å¼ºforå¾ªç¯çš„æ•ˆç‡æ¯”ä¸‹æ ‡éå†çš„æ–¹å¼æ•ˆç‡æ›´é«˜
 		int[] arr={1,2,3,4,5};
 		for(int ele : arr){
 			System.out.println(ele);

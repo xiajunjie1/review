@@ -10,14 +10,14 @@ import java.util.ResourceBundle;
 
 
 /*
- * ·â×°DBUtil---¼òÒ×°æ
- * ²½Öè£º
- * 	1.´´½¨ÅäÖÃÎÄ¼ş£¬±ÈÈçdb.properties
- * 	2.¶¨ÒåDBUtil¹¤¾ßÀà
- * 	3.Éè¼Æ¾²Ì¬ÊôĞÔ
- * 	4.ÉèÖÃ¾²Ì¬´úÂë¿é
- * 	5.¶¨ÒåÁ¬½Ó·½·¨
- * 	6.¶¨Òå¹Ø±Õ·½·¨
+ * å°è£…DBUtil---ç®€æ˜“ç‰ˆ
+ * æ­¥éª¤ï¼š
+ * 	1.åˆ›å»ºé…ç½®æ–‡ä»¶ï¼Œæ¯”å¦‚db.properties
+ * 	2.å®šä¹‰DBUtilå·¥å…·ç±»
+ * 	3.è®¾è®¡é™æ€å±æ€§
+ * 	4.è®¾ç½®é™æ€ä»£ç å—
+ * 	5.å®šä¹‰è¿æ¥æ–¹æ³•
+ * 	6.å®šä¹‰å…³é—­æ–¹æ³•
  * */
 public class DB_Util {
 	private static String driver;
@@ -25,8 +25,8 @@ public class DB_Util {
 	private static String username;
 	private static String password;
 	static {
-		//¾²Ì¬´úÂë¿éËæ×ÅÀàµÄ¼ÓÔØ¶ø¼ÓÔØ£¬ÇÒÖ»Ö´ĞĞÒ»´Î
-		//ÔÚ¸Ã´úÂë¿éÄÚÍ¬Ê±È¡µ½ÅäÖÃÎÄ¼şĞÅÏ¢£¬²¢¼ÓÔØÇı¶¯
+		//é™æ€ä»£ç å—éšç€ç±»çš„åŠ è½½è€ŒåŠ è½½ï¼Œä¸”åªæ‰§è¡Œä¸€æ¬¡
+		//åœ¨è¯¥ä»£ç å—å†…åŒæ—¶å–åˆ°é…ç½®æ–‡ä»¶ä¿¡æ¯ï¼Œå¹¶åŠ è½½é©±åŠ¨
 		ResourceBundle rb=ResourceBundle.getBundle("db");
 		driver=rb.getString("db.driver");
 		url=rb.getString("db.url");
@@ -61,7 +61,7 @@ public class DB_Util {
 			if(stat!=null)stat.close();
 			if(conn!=null)conn.close();
 		}catch(SQLException e){
-			System.err.println("¹Ø±Õ³ö´í£¡"+e);
+			System.err.println("å…³é—­å‡ºé”™ï¼"+e);
 		}
 	}
 

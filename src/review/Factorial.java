@@ -1,8 +1,8 @@
 package review;
 
 /**
- * ÊµÏÖ½×³Ë
- * Ëã·¨Ë¼Ïë£ºµİ¹é
+ * å®ç°é˜¶ä¹˜
+ * ç®—æ³•æ€æƒ³ï¼šé€’å½’
  *
  */
 
@@ -13,7 +13,7 @@ public class Factorial {
 		
 		if(para==1)return 1;
 		if(para<1){
-			System.out.println("ÇëÊäÈë´óÓÚ0µÄÕıÕûÊı");
+			System.out.println("è¯·è¾“å…¥å¤§äº0çš„æ­£æ•´æ•°");
 			return 0;
 		}
 		
@@ -23,6 +23,6 @@ public class Factorial {
 	public static void main(String[] args){
 		
 		int result=factorial(4);
-		System.out.println("½á¹ûÎª£º"+result);
+		System.out.println("ç»“æœä¸ºï¼š"+result);
 	}
 }

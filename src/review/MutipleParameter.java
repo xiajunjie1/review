@@ -1,6 +1,6 @@
 package review;
 /**
- * ÓÃÊı×éÊµÏÖµÄ¿É±ä³¤¶ÈµÄ·½·¨²ÎÊı
+ * ç”¨æ•°ç»„å®ç°çš„å¯å˜é•¿åº¦çš„æ–¹æ³•å‚æ•°
  * 
  * */
 
@@ -11,8 +11,8 @@ public class MutipleParameter {
 		System.out.println("The max number is : "+max);
 	}
 
-	//Êı¾İÀàĞÍ...ĞÎÊ½µÄ²ÎÊı£¬±ØĞë·ÅÔÚĞÎ²ÎÁĞ±íµÄ×îºóÒ»Î»
-	public static int getMax(int... arry){//...´ú±íÒ»¸öÊı×é
+	//æ•°æ®ç±»å‹...å½¢å¼çš„å‚æ•°ï¼Œå¿…é¡»æ”¾åœ¨å½¢å‚åˆ—è¡¨çš„æœ€åä¸€ä½
+	public static int getMax(int... arry){//...ä»£è¡¨ä¸€ä¸ªæ•°ç»„
 		int max=arry[0];
 		for(int ele : arry){
 			if(max<ele){
