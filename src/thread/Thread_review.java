@@ -1,5 +1,9 @@
 package thread;
 
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.FutureTask;
+
 /*
  * Java多线程编程
  * 	java本身不支持有多进程的程序开发，但是java支持多线程的程序开发，那么就需要清楚的区分出进程和线程之间有哪些联系
@@ -24,6 +28,41 @@ package thread;
  * 		用户只需要实现该接口，实现run方法，即可完成线程主类的定义，在JDK1.8后，可以配合lambda表达式使用
  * 
  * 
+ * Thread和Runnable的联系
+ * 	Thread类它实现了Runnable接口，也就是说Thread中的run方法是对Runnable接口中的run方法的重写
+ * 	同时如果想要启动线程，还需要将Runnable接口子类的对象实例传到Thread类之中，这种处理结构类似代理设计模式
+ * 	但是当前的程序又和传统的代理设计模式有所区别，如果在真是的代理设计模式中，代理主题类的对象所能够调用的方法
+ * 	应该是接口自定义的方法名称，此时如果通过Thread类的run()方法进行启动，那么这样的代理就更合理了
+ * 	
+ * 	使用Runnable实现的多线程可以更加清晰的描述处数据数据共享的概念（Thread也可以描述处这种概念，但是相比较而言还是Runnable更适合）
+ * 
+ * 
+ * Callable接口的使用
+ * 	使用Runnable接口实现的接口会有一个问题，它无法进行执行完毕后的返回。
+ * 	即，如果在run方法中执行一个循环进行字符串的拼接，然后将拼接的结果保存为一个属性。我们在主方法中启动线程
+ * 	然后在打印这个结果属性，执行后没法得到拼接完成的字符串，因为这个时候线程中run方法的内容还没执行，主方法
+ * 	就已经对该结果属性进行了输出。在JDK1.5之后提供了一个“J.U.C（java.util.concurrent）”的新的线程开发包，这个开发包里面针对多线程
+ * 	的实现提供了另一个新型处理接口----Callable
+ * 
+ *	Callable接口结构：
+ *		public interface Callable<V>{
+ *			public V call() throws Exception;
+ *		}
+ *	该接口中的call()类似于Runnable中的run()方法，而且它可以返回一个值
+ *	由于call方法存在返回值，所以Callable采用了异步的处理架构，虽然所有的线程都需要通过Thread来启动，
+ *	但是对于异步数据的返回就必须使用一个最为重要的接口：Future，它当中有一个get()方法，就是通过该方法得到call方法的返回值
+ *	Callable接口与Thread并无直接联系，但是Future接口有一个子类RunnableFuture<V>接口，该接口同时继承了Future和Runnable两个接口
+ *	在RunnableFuture接口下，又有一个FutureTask（异步任务）的实现类，即RunnableFuture实例对象可以由FutureTask实现
+ *	又由于RunnableFuture是Runnable的子类，所以Runnable接口也可以接收FutureTask对象
+ *	而FutureTask类中有如下两个构造方法：
+ *		public FutureTask(Runnable runnable,V result)
+ *		public FutureTask(Callable<v> call)
+ *	
+ * 
+ * 
+ * 	
+ * 	
+ * 
  * 
  * 		
  * 
@@ -31,7 +70,9 @@ package thread;
 public class Thread_review {
 	public static void main(String[] args){
 		//ThreadTest();
-		RunnableTest();
+		//RunnableTest();
+		//sharedata();
+		CallableTest();
 	}
 	
 	private static void ThreadTest(){
@@ -47,6 +88,42 @@ public class Thread_review {
 		new Thread(Thread_review::run).start();
 		new Thread(new myThreadRun("线程3")).start();
 		
+		
+	}
+	
+	/**
+	 * 通过Runnable接口子对象，实现数据共享
+	 * 分析可知，虽然这里获取了三个线程，但这三个线程接收的是同一个
+	 * Runnable对象，即他们三个中的target变量是同一个对象，即它们三个调用同一个对象的run方法
+	 * 由此实现了数据共享
+	 * */
+	private static void sharedata(){
+		TicketSell seller=new TicketSell();//定义Runnable接口子对象
+		//开启多个卖票线程
+		Thread sellerA=new Thread(seller);
+		Thread sellerB=new Thread(seller);
+		Thread sellerC=new Thread(seller);
+		//开始卖票
+		sellerA.start();
+		sellerB.start();
+		sellerC.start();
+	}
+	
+	/**
+	 * Callable线程调用
+	 * */
+	private static void CallableTest(){
+		myThreadCall callable=new myThreadCall();
+		//Runnable runable=new FutureTask(callable);
+		FutureTask<String> future=new FutureTask<String>(callable);
+		new Thread(future).start();
+		try {
+			//异步获取线程执行完毕后的返回值
+			System.out.println(future.get());
+		} catch (InterruptedException | ExecutionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 	
@@ -96,6 +173,44 @@ private String name;
 			System.out.println("【"+this.name+"】:"+i);
 		}
 		
+	}
+	
+	
+}
+
+
+/**
+ * 卖票模型，每个线程都可以进行卖票的操作
+ * */
+class TicketSell implements Runnable{
+	private int ticket=5;
+	@Override
+	public void run() {
+		while(this.ticket>0){
+			if(this.ticket>0){
+				System.out.println("售票："+this.ticket--);
+			}else{
+				break;
+			}
+		}
+		
+	}
+	
+	
+}
+
+/**
+ * 利用Callable接口实现多线程，并取得线程运行后的返回值
+ * */
+class myThreadCall implements Callable<String>{
+	private StringBuilder result=new StringBuilder();
+	@Override
+	public String call() throws Exception {
+		// TODO Auto-generated method stub
+		for(int i=0;i<10;i++){
+			this.result.append(i);
+		}
+		return result.toString();
 	}
 	
 }
