@@ -8,6 +8,7 @@ private String username;
 private String password;
 private String nickname;
 private String photo;
+private int isonline;//是否在线的标记
 public int getId() {
 	return id;
 }
@@ -42,5 +43,11 @@ public String getPhoto() {
 }
 public void setPhoto(String photo) {
 	this.photo = photo;
+}
+public int getIsonline() {
+	return isonline;
+}
+public void setIsonline(int isonline) {
+	this.isonline = isonline;
 }
 }

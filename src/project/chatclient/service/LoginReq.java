@@ -21,10 +21,11 @@ public class LoginReq {
 		this.msg=msg;
 	}
 	
-	public boolean Login(){
-		String server=Getconfig.getValue("server");
-		int port=Integer.parseInt(Getconfig.getValue("port"));
-		try(Socket s=new Socket(server,port);){
+
+	
+	public boolean Login(Socket s){
+		
+		try{
 			
 			OutputStream out=s.getOutputStream();
 			ObjectOutputStream oout=new ObjectOutputStream(out);
@@ -34,15 +35,11 @@ public class LoginReq {
 			Message reponsemsg=(Message)ois.readObject();
 			if(reponsemsg.getMsgType()==MessageType.Login_Success){
 			
-				if(ois!=null){
-					ois.close();
-				}
+				
 				return true;
 				
 			}else{
-				if(ois!=null){
-					ois.close();
-				}
+				
 			
 				return false;
 			}
@@ -56,5 +53,24 @@ public class LoginReq {
 		}
 	
 		return false;
+	}
+	
+	public Message getUsers(){
+		String server=Getconfig.getValue("server");
+		int port=Integer.parseInt(Getconfig.getValue("port"));
+		Message responseMsg=null;
+		try(Socket s=new Socket(server,port)){
+			ObjectOutputStream oos=new ObjectOutputStream(s.getOutputStream());
+			oos.writeObject(this.msg);
+			ObjectInputStream ois=new ObjectInputStream(s.getInputStream());
+			responseMsg=(Message)ois.readObject();
+			oos.close();
+			ois.close();
+			return responseMsg;
+		}catch(Exception e){
+			System.out.println("与服务器通讯异常...");
+			e.printStackTrace();
+		}
+		return responseMsg;
 	}
 }

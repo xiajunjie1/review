@@ -6,6 +6,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -30,7 +31,7 @@ public class RegisterView extends JFrame {
 	private JLabel nicknameLabel=null;//昵称
 	private JTextField nicknameTextField=null;
 	private JLabel photoLabel=null;//头像
-	private JTextField photoTextField=null;
+	private JComboBox photoTextField=null;
 	
 	private JPanel southPanel=null;
 	private JButton confirmBtn=null;
@@ -52,8 +53,9 @@ public class RegisterView extends JFrame {
 		checkTextField=new JPasswordField(33);
 		nicknameLabel=new JLabel("昵称");
 		nicknameTextField=new JTextField(33);
+		String[] purl=new String[]{"project/chatclient/image/chat.png","project/chatclient/image/icon.png"};
 		photoLabel=new JLabel("头像");
-		photoTextField=new JTextField(33);
+		photoTextField=new JComboBox<String>(purl);
 		
 		centerPanel=new JPanel(new FlowLayout(FlowLayout.CENTER));
 		JPanel p1=new JPanel();
@@ -99,7 +101,8 @@ public class RegisterView extends JFrame {
 				u.setUsername(unameTextField.getText());
 				u.setPassword(pwd);
 				u.setNickname(nicknameTextField.getText());
-				u.setPhoto(photoTextField.getText());
+				u.setPhoto((String)photoTextField.getSelectedItem());
+				u.setIsonline(0);
 				Message msg=new Message();
 				msg.setMsgType(MessageType.Register);
 				msg.setUser(u);
@@ -136,7 +139,7 @@ public class RegisterView extends JFrame {
 				RegisterView.this.pwdTextField.setText("");
 				RegisterView.this.checkTextField.setText("");
 				RegisterView.this.nicknameTextField.setText("");
-				RegisterView.this.photoTextField.setText("");
+				//RegisterView.this.photoTextField.setIte;
 			}
 			
 		});

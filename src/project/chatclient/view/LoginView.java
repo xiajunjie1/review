@@ -6,6 +6,9 @@ import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
+import java.net.Socket;
+import java.net.UnknownHostException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -17,12 +20,13 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import project.chatclient.service.LoginReq;
+import project.chatclient.util.Getconfig;
 import project.entry.Message;
 import project.entry.MessageType;
 import project.entry.User;
 
 /**
- * 客户端主界面
+ * 客户端登录主界面
  * */
 public class LoginView extends JFrame {
 	//上
@@ -79,20 +83,45 @@ public class LoginView extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				// 监听点击事件
-				User u=new User();
-				Message msg=new Message();
-				msg.setUser(u);
-				msg.setMsgType(MessageType.Login);
-				u.setUsername(usernameTextField.getText());
-				u.setPassword(new String(pwdPasswordField.getPassword()));
-				LoginReq req=new LoginReq(msg);
-				if(req.Login()){
-					//如果登录验证成功
-					LoginView.this.dispose();//关闭窗口
-				}else{
-					//弹出警告信息
-					JOptionPane.showMessageDialog(LoginView.this, "账号或密码错误","提示",JOptionPane.WARNING_MESSAGE);
+				String server=Getconfig.getValue("server");
+				int port=Integer.parseInt(Getconfig.getValue("port"));
+				Socket reqSocket;
+				try {
+					reqSocket = new Socket(server,port);
+					User u=new User();
+					Message msg=new Message();
+					msg.setUser(u);
+					msg.setMsgType(MessageType.Login);
+					u.setUsername(usernameTextField.getText());
+					u.setPassword(new String(pwdPasswordField.getPassword()));
+					LoginReq req=new LoginReq(msg);
+					if(req.Login(reqSocket)){
+						//如果登录验证成功
+						msg=new Message();
+						msg.setMsgType(MessageType.Get_Userlist);
+						req=new LoginReq(msg);
+						Message responseMsg=req.getUsers();
+						if(responseMsg!=null && responseMsg.getMsgType()==MessageType.Get_Ulist_Success){
+							new FriendslistView(u.getUsername()).CreateFrame(responseMsg.getUlist(),reqSocket);
+							LoginView.this.dispose();//关闭窗口
+						}else if(responseMsg!=null && responseMsg.getMsgType()==MessageType.Get_Ulist_Failure){
+							JOptionPane.showMessageDialog(LoginView.this, responseMsg.getContent(),"错误",JOptionPane.ERROR_MESSAGE);
+						}else{
+							JOptionPane.showMessageDialog(LoginView.this, "服务器通讯异常","错误",JOptionPane.ERROR_MESSAGE);
+						}
+						
+					}else{
+						//弹出警告信息
+						JOptionPane.showMessageDialog(LoginView.this, "账号或密码错误","提示",JOptionPane.WARNING_MESSAGE);
+					}
+				} catch (UnknownHostException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
 				}
+			
 			}
 			
 		});//添加鼠标监听事件
