@@ -99,6 +99,7 @@ public class LoginView extends JFrame {
 						//如果登录验证成功
 						msg=new Message();
 						msg.setMsgType(MessageType.Get_Userlist);
+						msg.setLoginUname(usernameTextField.getText().trim());
 						req=new LoginReq(msg);
 						Message responseMsg=req.getUsers();
 						if(responseMsg!=null && responseMsg.getMsgType()==MessageType.Get_Ulist_Success){

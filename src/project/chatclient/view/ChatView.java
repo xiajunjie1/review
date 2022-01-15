@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -24,6 +25,7 @@ import project.chatclient.service.ChatSend;
 import project.chatclient.util.Getconfig;
 import project.entry.Message;
 import project.entry.MessageType;
+import project.entry.Sms;
 
 public class ChatView extends JFrame {
 	private String hostname;
@@ -46,7 +48,7 @@ public class ChatView extends JFrame {
 	
 	}
 	
-	public void createFrame(){
+	public void createFrame(List<Sms> slist){
 		//centerPanel=new JPanel(new FlowLayout(FlowLayout.CENTER));
 		String server=Getconfig.getValue("server");
 		int port=Integer.parseInt(Getconfig.getValue("port"));
@@ -63,7 +65,12 @@ public class ChatView extends JFrame {
 			
 			msgArea=new JTextArea();
 			msgArea.setFont(new Font(Font.DIALOG,Font.PLAIN,18));
-			
+			//System.out.println("留言内容####："+slist);
+			if(slist!=null){
+				for(int i=0;i<slist.size();i++){
+					msgArea.append(slist.get(i).getContent()+"\n");
+				}
+			}
 			jscrollpane=new JScrollPane(msgArea);
 			this.add(jscrollpane,BorderLayout.CENTER);
 			
@@ -107,7 +114,7 @@ public class ChatView extends JFrame {
 			southPanel.add(sendBtn);
 			this.add(southPanel,BorderLayout.SOUTH);
 			//接收服务器穿过来的消息
-			new Thread(new ChatRevice(s,msgArea)).start();
+			
 		} catch (UnknownHostException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -117,7 +124,8 @@ public class ChatView extends JFrame {
 		}
 
 		
-		
+		ChatRevice revicer=new ChatRevice(s,msgArea);
+		new Thread(revicer).start();
 		this.setTitle(this.hostname+"-和-"+this.friendname+"的聊天窗口");
 		this.setBounds(300, 200, 600, 450);
 		this.setVisible(true);
@@ -131,11 +139,39 @@ public class ChatView extends JFrame {
 
 			@Override
 			public void windowClosing(WindowEvent e) {
-				// TODO Auto-generated method stub
-				super.windowClosing(e);
+				//向服务器发送请求，移除掉map中的chat Socket
+				Message reqMsg=new Message();
+				reqMsg.setMsgType(MessageType.Close_Chat);
+				reqMsg.setSocketKey(hostname+"-"+fname);
+				String server=Getconfig.getValue("server");
+				int port=Integer.parseInt(Getconfig.getValue("port"));
+				try {
+					Socket s=new Socket(server,port);
+					ObjectOutputStream oos=new ObjectOutputStream(s.getOutputStream());
+					oos.writeObject(reqMsg);
+					oos.close();
+					s.close();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+
+			/*
+			 * 关闭监听线程
+			 * */
+			@Override
+			public void windowClosed(WindowEvent e) {
+				
+				revicer.shutdown();
+				
 			}
 			
+			
+			
 		});
+		
+		
 	}
 
 	public String getHostname() {

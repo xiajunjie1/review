@@ -80,24 +80,27 @@ public class Userdao_imp implements Userdao {
 	}
 
 	@Override
-	public List<User> getUsers() {
+	public List<User> getUsers(String uname) {
 		// TODO Auto-generated method stub
 		Connection con=DB_Util.getConn();
 		PreparedStatement pstat=null;
 		ResultSet rs=null;
 		List<User> u=null;
-		String sql="Select id,username,nickname,photo,isonline from user";
+		//该语句用于获取好友列表，每获得一个好友列表，就要判断该好友是否为sms表中的发送，目的是为了判断该username是否有对此登录用户发送过信息
+		String sql="Select u.id as uid,username,nickname,photo,isonline,IF(SUM(IF((s.friendname=? and s.isread=0),1,0))>0,1,0)as hasleave from user as u left join sms as s on u.username=s.hostname group by u.username";
 		try {
 			pstat=con.prepareStatement(sql);
+			pstat.setString(1, uname);
 			rs=pstat.executeQuery();
 			u=new ArrayList<>();
 			while(rs.next()){
 				User user =new User();
-				user.setId(rs.getInt("id"));
+				user.setId(rs.getInt("uid"));
 				user.setUsername(rs.getString("username"));
 				user.setNickname(rs.getString("nickname"));
 				user.setPhoto(rs.getString("photo"));
 				user.setIsonline(rs.getInt("isonline"));
+				user.setHasleave(rs.getInt("hasleave"));
 				u.add(user);
 			}
 			
@@ -129,9 +132,21 @@ public class Userdao_imp implements Userdao {
 	}
 
 	@Override
-	public void UpdateUserbyUname(String username) {
+	public void UpdateUserbyUname(String username,String sql) {
 		// TODO Auto-generated method stub
-
+		Connection con=DB_Util.getConn();
+		PreparedStatement pstat=null;
+		try {
+			pstat=con.prepareStatement(sql);
+			pstat.setString(1, username);
+			pstat.executeUpdate();
+			DB_Util.close(con, pstat, null);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			DB_Util.close(con, pstat, null);
+			e.printStackTrace();
+		}
+		
 	}
 	
 	public boolean Login(String username,String password) throws SQLException{
@@ -158,6 +173,12 @@ public class Userdao_imp implements Userdao {
 			
 		}
 		return false;
+	}
+
+	@Override
+	public List<User> getUsers() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 

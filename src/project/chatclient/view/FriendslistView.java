@@ -5,6 +5,10 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +19,12 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+import project.chatclient.service.LeaveReq;
 import project.chatclient.service.UserRefresh;
+import project.chatclient.util.Getconfig;
+import project.entry.Message;
+import project.entry.MessageType;
+import project.entry.Sms;
 import project.entry.User;
 
 /**
@@ -30,7 +39,7 @@ public class FriendslistView extends JFrame {
 		JPanel panel=new JPanel(new GridLayout(10,1,20,20));
 		List<JLabel> labels=new ArrayList<>();
 		if(revSocket==null){
-			System.out.println("this is test");
+			System.out.println("没有登陆用户登录Socket");
 		}
 		for(int i=0;i<ulist.size();i++){
 			User u=ulist.get(i);
@@ -50,7 +59,12 @@ public class FriendslistView extends JFrame {
 					// TODO Auto-generated method stub
 					if(e.getClickCount()==2){
 						//双击
-						new ChatView(FriendslistView.this.title,((JLabel)e.getSource()).getText(),u.getUsername()).createFrame();;
+						//请求留言信息
+						LeaveReq lq=new LeaveReq();
+						List<Sms> slist=lq.getLevaes(u.getUsername(), FriendslistView.this.title);
+						((JLabel)e.getSource()).setForeground(Color.BLACK);
+						((JLabel)e.getSource()).setText(name);
+						new ChatView(FriendslistView.this.title,((JLabel)e.getSource()).getText(),u.getUsername()).createFrame(slist);
 					}
 				
 				}
@@ -75,6 +89,10 @@ public class FriendslistView extends JFrame {
 				//不在线
 				label.setEnabled(false);
 			}
+			if(u.getHasleave()==1){
+				//有给登录用户的留言
+				label.setText(name+"--(有留言)");
+			}
 			labels.add(label);
 			panel.add(label);
 		}
@@ -88,6 +106,38 @@ public class FriendslistView extends JFrame {
 		//开启监听线程，为了接收登录、下线消息，及时更新
 		UserRefresh ur=new UserRefresh(revSocket,labels,FriendslistView.this);
 		new Thread(ur).start();
+		this.addWindowListener(new WindowAdapter(){
+			
+			@Override
+			public void windowClosing(WindowEvent e) {
+			Message offmsg=new Message();
+			offmsg.setMsgType(MessageType.U_offline);
+			offmsg.setFromUser(FriendslistView.this.title);
+			String server=Getconfig.getValue("server");
+			int port=Integer.parseInt(Getconfig.getValue("port"));
+			try {
+				Socket socket=new Socket(server,port);
+				ObjectOutputStream oos=new ObjectOutputStream(socket.getOutputStream());
+				oos.writeObject(offmsg);
+				oos.close();
+				socket.close();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+
+			}
+
+			@Override
+			public void windowClosed(WindowEvent e) {
+				// 关闭监听线程
+				ur.shutdown();
+			}
+			
+			
+			
+		});
+
 	}
 	
 	

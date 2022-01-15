@@ -16,9 +16,14 @@ public class ChatRevice implements Runnable {
 
 	private Socket socket;
 	private JTextArea msgArea;
+	private boolean isrun=true;
 	public ChatRevice(Socket socket,JTextArea msgArea){
 		this.socket=socket;
 		this.msgArea=msgArea;
+	}
+	
+	public void shutdown(){
+		this.isrun=false;
 	}
 	@Override
 	public void run() {
@@ -28,7 +33,7 @@ public class ChatRevice implements Runnable {
 			int count=0;
 			System.out.println("等待读取...");
 			ObjectInputStream ois;
-			while(true){
+			while(isrun){
 				
 				ois=new ObjectInputStream(this.socket.getInputStream());
 				Message msg=(Message)ois.readObject();

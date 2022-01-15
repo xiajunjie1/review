@@ -11,6 +11,8 @@ private List<User> Ulist;
 private String socketKey;//存储Socket的map的键
 private String fromUser;//发送人
 private String toUser;//接收人
+private List<Sms> Slist;//留言
+private String LoginUname;
 
 public int getMsgType() {
 	return msgType;
@@ -66,6 +68,22 @@ public String getToUser() {
 
 public void setToUser(String toUser) {
 	this.toUser = toUser;
+}
+
+public List<Sms> getSlist() {
+	return Slist;
+}
+
+public void setSlist(List<Sms> slist) {
+	Slist = slist;
+}
+
+public String getLoginUname() {
+	return LoginUname;
+}
+
+public void setLoginUname(String loginUname) {
+	LoginUname = loginUname;
 }
 
 }

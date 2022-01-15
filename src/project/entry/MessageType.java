@@ -16,7 +16,11 @@ public interface MessageType {
 	public static final int Get_Ulist_Failure=9;
 	public static final int Talk_Connect=10;//一创建聊天的窗口就发送该信息给服务器，服务器记录聊天的Socket
 	public static final int Talk_Normal=11;//发送聊天信息
-	public static final int U_online=12;
+	public static final int U_online=12;//上线
+	public static final int U_offline=13;//下线
+	public static final int Have_Leave=14;//有留言，传给客户端
+	public static final int Get_Leave=15;//获取留言
+	public static final int Close_Chat=16;//关闭聊天窗口
 }
 
 

@@ -9,6 +9,7 @@ private String password;
 private String nickname;
 private String photo;
 private int isonline;//是否在线的标记
+private int hasleave;//是否给登录用户留言，在获取好友列表时使用
 public int getId() {
 	return id;
 }
@@ -49,5 +50,11 @@ public int getIsonline() {
 }
 public void setIsonline(int isonline) {
 	this.isonline = isonline;
+}
+public int getHasleave() {
+	return hasleave;
+}
+public void setHasleave(int hasleave) {
+	this.hasleave = hasleave;
 }
 }

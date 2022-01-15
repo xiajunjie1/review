@@ -7,10 +7,13 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.List;
 
+import project.chatserver.dao.Smsdao;
+import project.chatserver.dao.Smsdao_imp;
 import project.chatserver.dao.Userdao;
 import project.chatserver.dao.Userdao_imp;
 import project.entry.Message;
 import project.entry.MessageType;
+import project.entry.Sms;
 import project.entry.User;
 
 /**
@@ -59,9 +62,9 @@ public class Handler {
 		return responseMsg;
 	}
 	
-	public Message getUserlist(){
+	public Message getUserlist(String uname){
 		Userdao userdao=new Userdao_imp();
-		List<User> ulist=userdao.getUsers();
+		List<User> ulist=userdao.getUsers(uname);
 		Message msg;
 		if(ulist!=null&&ulist.size()>0){
 			msg=new Message();
@@ -90,4 +93,31 @@ public class Handler {
 			e.printStackTrace();
 		}
 	}
+	
+	/**
+	 * 将用户状态置为离线
+	 * */
+	public void offline(String username){
+		Userdao udao=new Userdao_imp();
+		String sql="Update user set isonline=0 where username=?";
+		udao.UpdateUserbyUname(username, sql);
+	}
+	
+	/**
+	 * 存放留言
+	 * */
+	public boolean saveSms(Sms sms){
+		Smsdao sdao=new Smsdao_imp();
+		return sdao.insert(sms);
+		
+	}
+	
+	public List<Sms> getSms(String from,String to){
+		List<Sms> slist=null;
+		Smsdao sdao=new Smsdao_imp();
+		slist=sdao.getList(from, to);
+		System.out.println("留言列表@@@@--:"+slist.toString());
+		return slist;
+	}
+	
 }
